@@ -20,3 +20,5 @@ manual: follow the normal Arkenfox procedure:
 5. Close Firefox
 6. Copy the newly "patched" user.js to the folder
 7. Launch firefox, everything should be set!
+
+preconfigured: If a patched version is already existing in this repository, you can just use that and skip Steps 1-3
