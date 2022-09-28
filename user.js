@@ -5,7 +5,7 @@ defaultPref("identity.fxaccounts.enabled", true);                   // enables F
 user_pref("keyword.enabled",    true);                              // Unified search bar cant auto-search with chosen default engine (Not Google!) otherwise
 
 // session (in original deactivate with "//")
-user_pref("browser.startup.homepage", 3);
+user_pref("browser.startup.page", 3);
 user_pref("browser.history_expire_days",7);
 user_pref("browser.sessionstore.restore_pinned_tabs_on_demand",true);
 user_pref("privacy.sanitize.sanitizeOnShutdown", false);
