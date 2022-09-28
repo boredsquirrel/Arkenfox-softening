@@ -13,6 +13,7 @@ user_pref("privacy.sanitize.sanitizeOnShutdown", false);
 // WINDOWS
 //user_pref("toolkit.winRegisterApplicationRestart", true);
 
+// (in original deactivate with "//")
 user_pref("privacy.clearOnShutdown.cache", false);     // [DEFAULT: true]
 user_pref("privacy.clearOnShutdown.history", false);   // [DEFAULT: true]
 user_pref("privacy.clearOnShutdown.sessions", false);  // [DEFAULT: true]
@@ -26,7 +27,7 @@ user_pref("browser.display.use_system_colors", true);
 // UA: RFP overrides the UA with Firefox Extended Release one (Netflix blocks if set)
 //user_pref("general.useragent.override",Mozilla/5.0 (X11; Linux x86_64; rv:104.0.2) Gecko/20100101 Firefox/104.0.2);
 
-//Speed (disable)
+//Speed (in original deactivate with "//")
 user_pref("browser.cache.disk.enable", true);
 user_pref("media.memory_cache_max_size", 65536);
 user_pref("browser.sessionstore.privacy_level", 0); //extra form content
