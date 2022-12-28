@@ -21,7 +21,8 @@ Choose the script you need and copy-paste them into your Terminal (`Ctrl+Alt+T` 
 ### 1. Native Version
 likely preinstalled, Ubuntu, Debian, Fedora, Arch, all should be the same (if not please create an Issue report)
 ```
-cd ~/.mozilla/firefox/
+mkdir ~/.scripts
+cd ~/.scripts/
 wget https://raw.githubusercontent.com/trytomakeyouprivate/Arkenfox-softening/main/arkenfox-script-native.sh
 chmod +x arkenfox-script-native.sh
 sh arkenfox-script-native.sh
@@ -30,7 +31,8 @@ sh arkenfox-script-native.sh
 ### 2. Flatpak Version
 Flathub recommended, containerized, works fine apart from KDEConnect and Keepass-browser Addons)
 ```
-cd ~/.var/app/org.mozilla.firefox/.mozilla/firefox/
+mkdir ~/.scripts
+cd ~/.scripts/
 wget https://raw.githubusercontent.com/trytomakeyouprivate/Arkenfox-softening/main/arkenfox-script-flatpak.sh
 chmod +x arkenfox-script-flatpak.sh
 sh arkenfox-script-flatpak.sh
@@ -40,7 +42,8 @@ sh arkenfox-script-flatpak.sh
 Dont know why you should use that. Ubuntu also switched back from shipping it by default I guess.
 But as long as the changes stay the same, its not a big difference.
 ```
-cd ~/snap/firefox/common/.mozilla/firefox/
+mkdir ~/.scripts
+cd ~/.scripts/
 wget https://raw.githubusercontent.com/trytomakeyouprivate/Arkenfox-softening/main/arkenfox-script-snap.sh
 chmod +x arkenfox-script-snap.sh
 sh arkenfox-script-snap.sh
