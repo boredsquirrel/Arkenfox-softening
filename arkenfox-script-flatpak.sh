@@ -89,7 +89,7 @@ cd ~
 
 wget https://github.com/trytomakeyouprivate/Arkenfox-softening/raw/main/script-cleaner-flatpak.sh
 
-chmod +x script-cleaner.sh
-sh script-cleaner.sh
+chmod +x script-cleaner-native.sh
+sh script-cleaner-native.sh
 
 fi
