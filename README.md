@@ -46,8 +46,7 @@ sh arkenfox-script-flatpak.sh
 ```
 
 ### 3. Snap Version
-Dont know why you should use that. Ubuntu also switched back from shipping it by default I guess.
-But as long as the changes stay the same, its not a big difference.
+Ubuntu will keep on using it as default, keeping the use of a native version complicated.
 ```
 mkdir ~/.scripts
 cd ~/.scripts/
