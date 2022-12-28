@@ -1,5 +1,7 @@
 #!/bin/sh
 
+zenity --info --text=" \n Please close Firefox, if it is running, then close this window! " --title="Installing..."
+
 cd ~/.var/app/org.mozilla.firefox/.mozilla/firefox/ARKENFOX/
 
 wget https://raw.githubusercontent.com/arkenfox/user.js/master/user.js
@@ -47,7 +49,7 @@ sed -i 's/system_colors", false/system_colors", true/g' user.js
 sed -i 's/cache.disk.enable", false/cache.disk.enable", true/g' user.js
 
 # Allow WebGL
-zenity --info --text="WARNING! \n\n WebGL is enabled for compatibility. \n Please use NoScript and block WebGL on all levels. \n You can allow it with \"individual level \"\." --title="Browser Warning"
+sed -i 's/webgl.disabled", true/webgl.disabled", false/g' user.js
 
 # Create a profile called arkenfox and set it as default
 
