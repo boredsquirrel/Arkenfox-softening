@@ -90,9 +90,9 @@ Use that once in a while to keep your settings up to date. " --title="Arkenfox U
 
 cd ~
 
-wget https://github.com/trytomakeyouprivate/Arkenfox-softening/raw/main/script-cleaner.sh
+wget https://github.com/trytomakeyouprivate/Arkenfox-softening/raw/main/script-cleaner-snap.sh
 
-chmod +x script-cleaner.sh
-sh script-cleaner.sh
+chmod +x script-cleaner-snap.sh
+sh script-cleaner-snap.sh
 
 fi
