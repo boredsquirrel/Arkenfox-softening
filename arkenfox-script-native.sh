@@ -56,15 +56,15 @@ zenity --info --text="WARNING! \n\n WebGL is enabled for compatibility. \n Pleas
 
 # Create a profile called arkenfox and set it as default
 
+cd ~/.mozilla/firefox/
+
 printf"""[Profile2]
 Name=Arkenfox
 IsRelative=1
 Path=ARKENFOX
-""" >> ~/.mozilla/firefox/profiles.ini
+""" >> profiles.ini
 
-cd ~/.mozilla/firefox/
-
-cp -r *.default-release/* ARKENFOX/
+cp -r *.default-release/* ARKENFOX/ && rm -r *.default-release/*
 
 firefox -P ARKENFOX
 
