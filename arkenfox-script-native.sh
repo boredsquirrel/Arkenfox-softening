@@ -66,8 +66,10 @@ Path=ARKENFOX
 
 cp -r *.default-release/* ARKENFOX/ && rm -r *.default-release/*
 
-firefox -P ARKENFOX
+zenity --info --text="The softened Arkenfox profile has been created, please choose it. \n Under \"about:profiles\" you can create an insecure Progile \n for Banking sites and others, that may not work \." --title="Info"
 
-zenity --info --text="The softened Arkenfox profile has been created. \n Under \"about:profiles\" you can create an insecure Progile \n for Banking sites and others, that may not work \." --title="Info"
+zenity --info --text="Please install NoScript and disable WebGL on all levels \n \n https://addons.mozilla.org/en-US/firefox/addon/noscript/ \." --title="Info"
+
+firefox -P 
 
 fi
