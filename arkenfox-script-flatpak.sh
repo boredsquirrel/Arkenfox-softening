@@ -1,8 +1,8 @@
 #!/bin/sh
 
-wget https://raw.githubusercontent.com/arkenfox/user.js/master/user.js -P ~/.var/app/org.mozilla.firefox/.mozilla/firefox/ARKENFOX/
-
 cd ~/.var/app/org.mozilla.firefox/.mozilla/firefox/ARKENFOX/
+
+wget https://raw.githubusercontent.com/arkenfox/user.js/master/user.js
 
 # enable firefox sync (disabled on Librewolf) ----------
 sed -i 's/identity.fxaccounts.enabled", false/identity.fxaccounts.enabled", true/g' user.js
@@ -51,5 +51,21 @@ sed -i 's/cache.disk.enable", false/cache.disk.enable", true/g' user.js
 # Allow WebGL
 xdg-open https://addons.mozilla.org/en-US/firefox/addon/noscript/
 zenity --info --text="WARNING! \n\n WebGL is enabled for compatibility. \n Please use NoScript and block WebGL on all levels. \n You can allow it with \"individual level \"\." --title="Browser Warning"
+
+# Create a profile called arkenfox and set it as default
+
+cd ~/.mozilla/firefox/
+
+printf"""[Profile2]
+Name=Arkenfox
+IsRelative=1
+Path=ARKENFOX
+""" >> profiles.ini
+
+cp -r *.default-release/* ARKENFOX/ && rm -r *.default-release/*
+
+flatpak run org.mozilla.firefox -P Arkenfox
+
+zenity --info --text="The softened Arkenfox profile has been created. \n Under \"about:profiles\" you can create an insecure Progile \n for Banking sites and others, that may not work \." --title="Info"
 
 fi
