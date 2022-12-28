@@ -26,7 +26,7 @@ snap run firefox
 ```
 
 ### 1. Native Version
-likely preinstalled, Ubuntu, Debian, Fedora, Arch, all should be the same (if not please create an Issue report)
+likely preinstalled, Linux Mint, Debian, Fedora, Manjaro, POP!_OS all should be the same
 ```
 mkdir ~/.scripts
 cd ~/.scripts/
@@ -36,7 +36,7 @@ sh arkenfox-script-native.sh
 ```
 
 ### 2. Flatpak Version
-Flathub recommended, containerized, works fine apart from KDEConnect and Keepass-browser Addons)
+[Flathub version recommended](https://dl.flathub.org/repo/appstream/org.mozilla.firefox.flatpakref), containerized, works fine apart from KDEConnect and Keepass-browser Addons
 ```
 mkdir ~/.scripts
 cd ~/.scripts/
@@ -61,6 +61,8 @@ sh arkenfox-script-snap.sh
 Firefox is not really privacy friendly. It has horrible presets and even if you apply all GUI Settings to make it more private, remove Google etc., you still have lots of stuff under the hood.
 
 But Firefox is very modular, with every setting being changeable by the user with the user.js. This is awesome, as the Tor-Browser uses these settings to become more secure, and Arkenfox is a long-existing preset of changes that are pretty much the same as those from the Tor-Browser.
+
+The Arkenfox team saves us a lot of effort, the integrated links and sources are awesome, and they also include unnessecary settings (outdated, already covered, contraproductive) that you would maybe change accidently.
 
 The problem is, that Arkenfox-Firefox will not work great for daily usage. You lose way too much functionality, that is not actually dangerous, so instead of creating my own user.js (stupid efford) I looked through that whole preset and changed only the annoying settings, resulting in this minimal changeset that completely changes the experience. 
 
