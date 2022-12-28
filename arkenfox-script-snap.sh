@@ -1,5 +1,7 @@
 #!/bin/sh
 
+zenity --info --text=" \n Please close Firefox, if it is running, then close this window! " --title="Installing..."
+
 mkdir ~/snap/firefox/common/.mozilla/firefox/ARKENFOX
 
 cd ~/snap/firefox/common/.mozilla/firefox/ARKENFOX
@@ -18,8 +20,6 @@ sed -i 's/user_pref("browser.startup.homepage_override.mstone", "ignore");/#user
 # Allow Captive Portals: --------------
 sed -i 's/user_pref(canonicalURL", ";/canonicalURL", "captive.kuketz.de/g' user.js
 sed -i 's/portal-service.enabled", false/portal-service.enabled", true/g' user.js
-xdg-open http://captive.kuketz.de
-zenity --info --text="\"captive.kuketz.de\" will be used to detect captive portals. You can change it in the settings of \"arkenfox-script\"\." --title="Info"
 
 # Enable Pocket news (Start page) --------------
 sed -i 's/discoverystreamfeed", false/discoverystreamfeed", true/g' user.js
@@ -51,8 +51,7 @@ sed -i 's/system_colors", false/system_colors", true/g' user.js
 sed -i 's/cache.disk.enable", false/cache.disk.enable", true/g' user.js
 
 # Allow WebGL
-xdg-open https://addons.mozilla.org/en-US/firefox/addon/noscript/
-zenity --info --text="WARNING! \n\n WebGL is enabled for compatibility. \n Please use NoScript and block WebGL on all levels. \n You can allow it with \"individual level \"\." --title="Browser Warning"
+sed -i 's/webgl.disabled", true/webgl.disabled", false/g' user.js
 
 # Create a profile called arkenfox and set it as default
 
@@ -66,11 +65,28 @@ Path=ARKENFOX
 
 cp -r *.default-release/* ARKENFOX/ && rm -r *.default-release/*
 
-zenity --info --text="The softened Arkenfox profile has been created, please open it. \n \n Under \"about:profiles\" you can create an insecure Profile \n for Banking sites and others, that may not work \n \n You can delete empty and unused profile folders now. \." --title="Info"
 
-zenity --info --text="Please install NoScript and disable WebGL on all levels \n \n https://addons.mozilla.org/en-US/firefox/addon/noscript/ \." --title="Info"
+zenity --info --text="The softened Arkenfox profile has been created. \n Under \"about:profiles\" you can create an insecure Profile \n for Banking sites and others that may not work. \n \n Firefox will open, choose the profile "Arkenfox" to continue. " --title="Info"
 
 snap run firefox -P
+
+zenity --info --text="Please install NoScript and disable WebGL on all levels, \n Default, Trusted and Untrusted. You can enable it manually. \." --title="Warning!"
+
+xdg-open https://addons.mozilla.org/en-US/firefox/addon/noscript/
+
+zenity --info --text="\"captive.kuketz.de\" will be used to detect captive portals. You can change it in the settings of \"arkenfox-script\"\." --title="Info"
+
+xdg-open http://captive.kuketz.de
+
+
+printf """[Desktop Entry]
+Exec=/home/user/.scripts/arkenfox-script-flatpak.sh
+GenericName=Downloads the latest Arkenfox version, applies softening
+Icon=preferences-web-browser-ssl
+Name=Update Arkenfox""" > ~/.local/share/applications/Update-Arkenfox.desktop
+
+zenity --info --text="An Appstarter called \"Update Arkenfox\" has been created.
+Use that once in a while to keep your settings up to date. " --title="Arkenfox Update"
 
 cd ~
 
