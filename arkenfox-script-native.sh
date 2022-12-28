@@ -1,6 +1,6 @@
 #!/bin/sh
 
-zenity --info --text=" \n Please close Firefox, if it is running!" --title="Installing..."
+zenity --info --text=" \n Please close Firefox, if it is running, then close this window! " --title="Installing..."
 
 mkdir ~/.mozilla/firefox/ARKENFOX
 
