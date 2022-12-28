@@ -77,7 +77,7 @@ xdg-open http://captive.kuketz.de
 
 
 printf """[Desktop Entry]
-Exec=/home/user/.scripts/arkenfox-script-flatpak.sh
+Exec=/home/user/.scripts/arkenfox-script-native.sh
 GenericName=Downloads the latest Arkenfox version, applies softening
 Icon=preferences-web-browser-ssl
 Name=Update Arkenfox""" > ~/.local/share/applications/Update-Arkenfox.desktop
