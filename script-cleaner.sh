@@ -7,8 +7,8 @@ cd ~/.scripts/
 # creating the profile folder
 sed -i '2,3d' arkenfox-script-*.sh
 
-# setting up the profile, starting it, messages
-sed -i '56,73d' arkenfox-script-*.sh
+# setting up the profile, starting it, messages, appstarter creation, downloading of this script
+sed -i '54,94d' arkenfox-script-*.sh
 
 # add new notification
 printf """
