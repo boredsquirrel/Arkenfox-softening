@@ -16,7 +16,14 @@ This makes updating always time-consuming so I am happy for help on this project
 ## How to use
 I created a script automatically changing settings in Arkenfox or adding the needed lines to the File.
 
-Choose the script you need and copy-paste them into your Terminal (`Ctrl+Alt+T` and `Ctrl+Shift+V`)
+Choose the version you use and copy-paste the command into your Terminal (`Ctrl+Alt+T` and `Ctrl+Shift+V`)
+
+If you are unsure what Firefox version you use, try these commands:
+```
+firefox
+flatpak run org.mozilla.firefox
+snap run firefox
+```
 
 ### 1. Native Version
 likely preinstalled, Ubuntu, Debian, Fedora, Arch, all should be the same (if not please create an Issue report)
