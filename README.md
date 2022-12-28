@@ -60,7 +60,7 @@ sh arkenfox-script-snap.sh
 ## More Detailed explanation
 Firefox is not really privacy friendly. It has horrible presets and even if you apply all GUI Settings to make it more private, remove Google etc., you still have lots of stuff under the hood.
 
-But Firefox is very modular, with every setting being changeable by the user with the user.js. This is awesome, as the Tor-Browser uses these settings to become more secure, and Arkenfox is a long-existing preset of changes that are pretty much the same than those from the Tor-Browser.
+But Firefox is very modular, with every setting being changeable by the user with the user.js. This is awesome, as the Tor-Browser uses these settings to become more secure, and Arkenfox is a long-existing preset of changes that are pretty much the same as those from the Tor-Browser.
 
 The problem is, that Arkenfox-Firefox will not work great for daily usage. You lose way too much functionality, that is not actually dangerous, so instead of creating my own user.js (stupid efford) I looked through that whole preset and changed only the annoying settings, resulting in this minimal changeset that completely changes the experience. 
 
