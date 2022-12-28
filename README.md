@@ -54,3 +54,18 @@ wget https://raw.githubusercontent.com/trytomakeyouprivate/Arkenfox-softening/ma
 chmod +x arkenfox-script-snap.sh
 sh arkenfox-script-snap.sh
 ```
+
+---
+
+## More Detailed explanation
+Firefox is not really privacy friendly. It has horrible presets and even if you apply all GUI Settings to make it more private, remove Google etc., you still have lots of stuff under the hood.
+
+But Firefox is very modular, with every setting being changeable by the user with the user.js. This is awesome, as the Tor-Browser uses these settings to become more secure, and Arkenfox is a long-existing preset of changes that are pretty much the same than those from the Tor-Browser.
+
+The problem is, that Arkenfox-Firefox will not work great for daily usage. You lose way too much functionality, that is not actually dangerous, so instead of creating my own user.js (stupid efford) I looked through that whole preset and changed only the annoying settings, resulting in this minimal changeset that completely changes the experience. 
+
+Pocket News can be manually disabled, the rest of the Pocket integration is a bit annoying and I am not sure, if it harms privacy somehow. I may create a simple CSS to remove a few right-click-menu entries, as its completely bloated.
+
+If you have any improvements or changes you wish, please create an issue report. 
+
+Spread this script, fork it, change it, help make hardened Firefox more popular! You just cant install Arkenfox on some random persons computer, but this script should be totally fine.
