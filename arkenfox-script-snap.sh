@@ -72,4 +72,11 @@ zenity --info --text="Please install NoScript and disable WebGL on all levels \n
 
 snap run firefox -P
 
+cd ~
+
+wget https://github.com/trytomakeyouprivate/Arkenfox-softening/raw/main/script-cleaner.sh
+
+chmod +x script-cleaner.sh
+sh script-cleaner.sh
+
 fi
