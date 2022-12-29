@@ -15,4 +15,4 @@ printf """
 notify-send 'Arkenfox' 'Firefox Arkenfox user.js updated'""" >> arkenfox-script-flatpak.sh
 
 # remove itself
-rm ~/script-cleaner-flatpak.sh
+rm script-cleaner-flatpak.sh
