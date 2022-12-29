@@ -15,4 +15,4 @@ printf """
 notify-send 'Arkenfox' 'Firefox Arkenfox user.js updated'""" >> arkenfox-script-snap.sh
 
 # remove itself
-rm ~/script-cleaner-snap.sh
+rm script-cleaner-snap.sh
