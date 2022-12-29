@@ -4,6 +4,8 @@ zenity --info --text=" \n Please close Firefox, if it is running, then close thi
 
 cd ~/.var/app/org.mozilla.firefox/.mozilla/firefox/ARKENFOX/
 
+rm user.js
+
 wget https://raw.githubusercontent.com/arkenfox/user.js/master/user.js
 
 # enable firefox sync (disabled on Librewolf) ----------
