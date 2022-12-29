@@ -78,6 +78,7 @@ zenity --info --text="\"captive.kuketz.de\" will be used to detect captive porta
 
 xdg-open http://captive.kuketz.de
 
+xdg-open https://github.com/trytomakeyouprivate/Arkenfox-softening/blob/main/Addon-recommendations.md
 
 printf """[Desktop Entry]
 Exec=/home/user/.scripts/arkenfox-script-snap.sh
