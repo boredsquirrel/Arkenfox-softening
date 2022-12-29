@@ -40,6 +40,8 @@ These are then always loaded from a third party, allowing them to see your IP, c
 
 LocalCDN Downloads these contents and then redirects these requests to a local source, where the content is stored.
 
+[More infos on their page](https://codeberg.org/nobody/LocalCDN). The Addon is a fork of Decentraleyes, so you dont need both!
+
 ## [KeepassXC integration](https://addons.mozilla.org/en-US/firefox/addon/keepassxc-browser/)
 This addon does not work on Snap or Flatpak yet!
 
