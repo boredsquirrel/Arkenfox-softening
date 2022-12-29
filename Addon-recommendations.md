@@ -4,7 +4,7 @@ Arkenfox is done, but Firefoxes own parameters arent everything that can increas
 
 Be aware that Addons interfering with Network traffic, or Addons that are only Frontends for external services (translators, converters, etc.) will make you more unique or track you in general.
 
-The Addon "Translate webpages" seems to be an exception, sending only Traffic to Google if you actively choose so.
+The Addon [Translate webpages](https://addons.mozilla.org/en-US/firefox/addon/traduzir-paginas-web/) ([Source Code](https://github.com/FilipePS/Traduzir-paginas-web) seems to be an exception, sending only Traffic to Google if you actively choose so.
 
 ## [NoScript](https://addons.mozilla.org/en-US/firefox/addon/noscript/)
 The only Addon installed on the Tor-Browser.
