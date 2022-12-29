@@ -15,4 +15,4 @@ printf """
 notify-send 'Arkenfox' 'Firefox Arkenfox user.js updated'""" >> arkenfox-script-native.sh
 
 # remove itself
-rm ~/script-cleaner-native.sh
+rm script-cleaner-native.sh
