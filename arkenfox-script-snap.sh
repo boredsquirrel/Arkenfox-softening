@@ -6,7 +6,7 @@ mkdir ~/snap/firefox/common/.mozilla/firefox/ARKENFOX
 
 cd ~/snap/firefox/common/.mozilla/firefox/ARKENFOX
 
-wget https://raw.githubusercontent.com/arkenfox/user.js/master/user.js
+wget -O https://raw.githubusercontent.com/arkenfox/user.js/master/user.js
 
 # enable Firefox sync (disabled on Librewolf) ----------
 sed -i 's/identity.fxaccounts.enabled", false/identity.fxaccounts.enabled", true/g' user.js
