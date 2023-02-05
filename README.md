@@ -25,34 +25,54 @@ flatpak run org.mozilla.firefox
 snap run firefox
 ```
 
+*There is the option to disable Letterboxing included. Letterboxing may add grey bars to your browser window if the size is not 16:9 (as far as I know), preventing Websites fingerprinting you due to a special Screen size. This may have a bigger impact on experience than you want, remove the "#" before that line in that case.*
+
 ### 1. Native Version
 likely preinstalled, Linux Mint, Debian, Fedora, Manjaro, POP!_OS all should be the same
 ```
-mkdir ~/.scripts
-cd ~/.scripts/
-wget https://raw.githubusercontent.com/trytomakeyouprivate/Arkenfox-softening/main/arkenfox-script-native.sh
-chmod +x arkenfox-script-native.sh
-sh arkenfox-script-native.sh
+mkdir -P ~/Tools/Scripts/
+cd ~/Tools/Scripts/
+wget https://raw.githubusercontent.com/trytomakeyouprivate/Arkenfox-softening/main/arkenfox-script.sh
+
+# disable letterboxing (reduces browser window size against fingerprinting)
+# sed -i 's/"#sed -i 's/resistFingerprinting.letterboxing"/"sed -i 's/resistFingerprinting.letterboxing"/g' arkenfox-script.sh
+
+chmod +x arkenfox-script.sh
+sh arkenfox-script.sh
 ```
 
 ### 2. Flatpak Version
 [Flathub version recommended](https://dl.flathub.org/repo/appstream/org.mozilla.firefox.flatpakref), containerized, works fine apart from KDEConnect and Keepass-browser Addons
 ```
-mkdir ~/.scripts
-cd ~/.scripts/
-wget https://raw.githubusercontent.com/trytomakeyouprivate/Arkenfox-softening/main/arkenfox-script-flatpak.sh
-chmod +x arkenfox-script-flatpak.sh
-sh arkenfox-script-flatpak.sh
+mkdir -P ~/Tools/Scripts/
+cd ~/Tools/Scripts/
+wget https://raw.githubusercontent.com/trytomakeyouprivate/Arkenfox-softening/main/arkenfox-script.sh
+
+# Modify to work with Flatpak
+sed -i 's/"~/.mozilla/firefox/"/"~/.var/app/org.mozilla.firefox/.mozilla/firefox/"/g' arkenfox-script.sh
+
+# disable letterboxing (reduces browser window size against fingerprinting)
+# sed -i 's/"#sed -i 's/resistFingerprinting.letterboxing"/"sed -i 's/resistFingerprinting.letterboxing"/g' arkenfox-script.sh
+
+chmod +x arkenfox-script.sh
+sh arkenfox-script.sh
 ```
 
 ### 3. Snap Version
 Ubuntu will keep on using it as default, keeping the use of a native version complicated.
 ```
-mkdir ~/.scripts
-cd ~/.scripts/
-wget https://raw.githubusercontent.com/trytomakeyouprivate/Arkenfox-softening/main/arkenfox-script-snap.sh
-chmod +x arkenfox-script-snap.sh
-sh arkenfox-script-snap.sh
+mkdir -P ~/Tools/Scripts/
+cd ~/Tools/Scripts/
+wget https://raw.githubusercontent.com/trytomakeyouprivate/Arkenfox-softening/main/arkenfox-script.sh
+
+# modify to work with Snap
+sed -i 's/"~/.mozilla"/"~/snap/firefox/common/.mozilla"/g' arkenfox-script.sh
+
+# disable letterboxing (reduces browser window size against fingerprinting)
+# sed -i 's/"#sed -i 's/resistFingerprinting.letterboxing"/"sed -i 's/resistFingerprinting.letterboxing"/g' arkenfox-script.sh
+
+chmod +x arkenfox-script.sh
+sh arkenfox-script.sh
 ```
 
 ---
