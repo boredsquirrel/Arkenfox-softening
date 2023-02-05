@@ -3,8 +3,13 @@ Harden Firefox, but not so much. Keep tabs, save history for a 7 days, enable ca
 
 I use this personally to make [Arkenfox](https://github.com/arkenfox/user.js) usable. It works pretty much like a normal Browser, but more secure! If you want the best security, use the Tor-Browser or even Whonix, Tails or QubesOS.
 
+---
+
 ***WARNING***
 This script enables WebGL, to run certain Map sites and Online-Games. [Use NoScript](https://addons.mozilla.org/en-US/firefox/addon/noscript/) and Block WebGL on Default, Trusted and Untrusted level. The few sites actually needing WebGL will probably tell you, and you can manually enable it. This is way better than having it blocked on all sites with a big complex user.js.
+
+There is the option to disable Letterboxing included. Letterboxing may add grey bars to your browser window if the size is not 16:9 (as far as I know), preventing Websites fingerprinting you due to a special Screen size. This may have a bigger impact on experience than you want, remove the "#" before that line in the install command.
+---
 
 Firefox settings change a lot, for example the recent change from
 
@@ -24,8 +29,6 @@ firefox
 flatpak run org.mozilla.firefox
 snap run firefox
 ```
-
-*There is the option to disable Letterboxing included. Letterboxing may add grey bars to your browser window if the size is not 16:9 (as far as I know), preventing Websites fingerprinting you due to a special Screen size. This may have a bigger impact on experience than you want, remove the "#" before that line in that case.*
 
 ### 1. Native Version
 likely preinstalled, Linux Mint, Debian, Fedora, Manjaro, POP!_OS all should be the same
