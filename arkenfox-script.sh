@@ -37,6 +37,13 @@ sed -i 's/clearOnShutdown.cache", true/clearOnShutdown.cache", false/g' user.js
 sed -i 's/clearOnShutdown.history", true/clearOnShutdown.history", false/g' user.js
 sed -i 's/clearOnShutdown.sessions", true/clearOnShutdown.sessions", false/g' user.js
 
+# Disable Letterboxing (optional)
+#sed -i 's/resistFingerprinting.letterboxing", true/resistFingerprinting.letterboxing", false/g' user.js
+
+# Enable Crash reporting (not automatic)
+sed -i 's/breakpad.reportURL", ""/breakpad.reportURL", "https://www.mozilla.org/legal/privacy/firefox.html#crash-reporter"/g' user.js
+sed -i 's/tabs.crashReporting.sendReport", false/tabs.crashReporting.sendReport", true/g' user.js
+
 # Cosmetic: prevent Amazon, Google etc. from being pinned to the Newtabpage should you use it
 printf """
 user_pref("browser.newtabpage.pinned","");""" >> user.js
