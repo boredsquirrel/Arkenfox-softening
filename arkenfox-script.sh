@@ -18,8 +18,9 @@ sed -i 's/keyword.enabled", false/keyword.enabled", true/g' user.js
 sed -i 's/user_pref("browser.startup.homepage_override.mstone", "ignore");/#user_pref("browser.startup.homepage_override.mstone", "ignore");/g' user.js
 
 # Allow Captive Portals: --------------
-sed -i 's/user_pref(canonicalURL", ";/canonicalURL", "captive.kuketz.de/g' user.js
+sed -i 's/user_pref(canonicalURL", ";/canonicalURL", "http://www.captive.kuketz.de/g' user.js
 sed -i 's/portal-service.enabled", false/portal-service.enabled", true/g' user.js
+sed -i 's/network.connectivity-service.enabled", false/network.connectivity-service.enabled", true/g' user.js
 
 # Enable Pocket news (Start page) --------------
 sed -i 's/discoverystreamfeed", false/discoverystreamfeed", true/g' user.js
@@ -39,10 +40,6 @@ sed -i 's/clearOnShutdown.sessions", true/clearOnShutdown.sessions", false/g' us
 
 # Disable Letterboxing (optional)
 #sed -i 's/resistFingerprinting.letterboxing", true/resistFingerprinting.letterboxing", false/g' user.js
-
-# Enable Crash reporting (not automatic)
-sed -i 's/breakpad.reportURL", ""/breakpad.reportURL", "https://www.mozilla.org/legal/privacy/firefox.html#crash-reporter"/g' user.js
-sed -i 's/tabs.crashReporting.sendReport", false/tabs.crashReporting.sendReport", true/g' user.js
 
 # Cosmetic: prevent Amazon, Google etc. from being pinned to the Newtabpage should you use it
 printf """
