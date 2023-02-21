@@ -1,6 +1,8 @@
 # Addon Recommendations
 
-Arkenfox is done, but Firefoxes own parameters arent everything that can increase your privacy.
+[Please use the Arkenfox Wiki for Extension Recommendations](https://github.com/arkenfox/user.js/wiki/4.1-Extensions)
+
+Arkenfox is done, but Firefoxes own parameters aren't everything that can increase your privacy.
 
 Be aware that Addons interfering with Network traffic, or Addons that are only Frontends for external services (translators, converters, etc.) will make you more unique or track you in general.
 
@@ -34,13 +36,9 @@ This addon redirects common tracking monopoles to privacy-friendly servers hoste
 Make sure to donate to frequently used servers, to keep them running!
 
 ## [LocalCDN](https://addons.mozilla.org/en-US/firefox/addon/localcdn-fork-of-decentraleyes/)
-Many site creators are lazy and use external content like Google Fonts.
+Not recommended anymore, outdated and not advanced enough to really help.
 
-These are then always loaded from a third party, allowing them to see your IP, combined with the site you visit.
-
-LocalCDN Downloads these contents and then redirects these requests to a local source, where the content is stored.
-
-[More infos on their page](https://codeberg.org/nobody/LocalCDN). The Addon is a fork of Decentraleyes, so you dont need both!
+It could even create a unique browser fingerprint.
 
 ## [KeepassXC integration](https://addons.mozilla.org/en-US/firefox/addon/keepassxc-browser/)
 This addon does not work on Snap or Flatpak yet!
