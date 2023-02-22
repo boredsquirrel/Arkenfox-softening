@@ -102,7 +102,7 @@ Using [Simple Menu Wizard](https://github.com/stonecrusher/simpleMenuWizard) I c
 
 All this file does, is reducing the displayed options in the context menu, for example emailing images, inspecting its usability, and more that a normal user doesnt need. It makes Firefox wayyy less cluttered, especially when some entries are already replaced (SingleFile for saving Pages as working HTML, Multi account containers instead of "new window").
 
-### [Frefox for TV](https://github.com/trytomakeyouprivate/Fedora-TV-KDE-Bigscreen)
+### [Firefox for Linux TV](https://github.com/trytomakeyouprivate/Fedora-TV-KDE-Bigscreen)
 This is my try to create the perfect "Firefox for Linux TV" preset. Its a normally secure browser, using lots of snippets of the Arkenfox user.js, integrating many useful bookmarks, some Addons, a nice selection page and more, adjusting it to be used on a Linux TV.
 
 ## Helping
