@@ -1,6 +1,6 @@
 #!/bin/sh
 
-zenity --info --text=" \n Please close Firefox, if it is running, then close this window! " --title="Installing..."
+notify-send -a "Arkenfox-install" -t 4000 "Preparation" "Please close Firefox, if it is running."
 
 mkdir ~/.mozilla/firefox/ARKENFOX
 
@@ -54,7 +54,7 @@ IsRelative=1
 Path=ARKENFOX
 """ >> profiles.ini
 
-zenity --info --text="The softened Arkenfox profile has been created. \n Under \"about:profiles\" you can create an insecure Profile \n for Banking sites and others that may not work. \n \n Firefox will open, choose the profile "Arkenfox" to continue. " --title="Info"
+notify-send -a "Arkenfox-install" -t 20000 "Info" "The softened Arkenfox profile has been created. Under 'about:profiles' you can access the normal Profile for Banking sites and others that may not work. Firefox will open, choose the profile 'Arkenfox' to continue."
 
 firefox -P 
 
@@ -62,26 +62,25 @@ zenity --info --text="Please install NoScript and disable WebGL on all levels, \
 
 xdg-open https://addons.mozilla.org/en-US/firefox/addon/noscript/
 
-zenity --info --text="\"captive.kuketz.de\" will be used to detect captive portals. You can change it in the settings of \"arkenfox-script\"\." --title="Info"
+notify-send -a "Arkenfox install" -t 15000 "Captive Portal" '"captive.kuketz.de" will be used to detect captive portals. You can change it in the settings of "arkenfox-script"'
 
 xdg-open http://captive.kuketz.de
 
 xdg-open https://github.com/trytomakeyouprivate/Arkenfox-softening/blob/main/Addon-recommendations.md
 
 printf """[Desktop Entry]
-Exec=/home/user/.scripts/arkenfox-script-native.sh
+Exec=~/Tools/Scripts/arkenfox-script.sh
 GenericName=Downloads the latest Arkenfox version, applies softening
 Icon=preferences-web-browser-ssl
 Name=Update Arkenfox""" > ~/.local/share/applications/Update-Arkenfox.desktop
 
-zenity --info --text="An Appstarter called \"Update Arkenfox\" has been created.
-Use that once in a while to keep your settings up to date. " --title="Arkenfox Update"
+notify-send -a "Arkenfox install" -t 10000 "Updater" 'An Appstarter called "Update Arkenfox" has been created. Use that once in a while to keep your settings up to date.'
 
 cd ~
 
-wget https://github.com/trytomakeyouprivate/Arkenfox-softening/raw/main/script-cleaner-native.sh
+wget https://github.com/trytomakeyouprivate/Arkenfox-softening/raw/main/script-cleaner.sh
 
-chmod +x script-cleaner-native.sh
-sh script-cleaner-native.sh
+chmod +x script-cleaner.sh
+sh script-cleaner.sh
 
 fi
