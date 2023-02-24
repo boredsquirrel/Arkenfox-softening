@@ -17,16 +17,6 @@ sed -i 's/keyword.enabled", false/keyword.enabled", true/g' user.js
 # allow new version notes -----------
 sed -i 's/user_pref("browser.startup.homepage_override.mstone", "ignore");/#user_pref("browser.startup.homepage_override.mstone", "ignore");/g' user.js
 
-# Allow Captive Portals: --------------
-sed -i 's/user_pref(canonicalURL", ";/canonicalURL", "http://www.captive.kuketz.de/g' user.js
-sed -i 's/portal-service.enabled", false/portal-service.enabled", true/g' user.js
-sed -i 's/network.connectivity-service.enabled", false/network.connectivity-service.enabled", true/g' user.js
-
-# Enable Pocket news (Start page) --------------
-sed -i 's/discoverystreamfeed", false/discoverystreamfeed", true/g' user.js
-sed -i 's/topstories", false/topstories", true/g' user.js
-sed -i 's/highlights.includePocket", false/highlights.includePocket", true/g' user.js
-
 # Restore session, don't autodelete everything ------------------------
 sed -i 's/startup.homepage", "about:blank"/startup.homepage", 3/g' user.js
 printf """
@@ -37,9 +27,6 @@ sed -i 's/sanitizeOnShutdown", true/sanitizeOnShutdown", false/g' user.js
 sed -i 's/clearOnShutdown.cache", true/clearOnShutdown.cache", false/g' user.js
 sed -i 's/clearOnShutdown.history", true/clearOnShutdown.history", false/g' user.js
 sed -i 's/clearOnShutdown.sessions", true/clearOnShutdown.sessions", false/g' user.js
-
-# Disable Letterboxing (optional)
-#sed -i 's/resistFingerprinting.letterboxing", true/resistFingerprinting.letterboxing", false/g' user.js
 
 # Cosmetic: prevent Amazon, Google etc. from being pinned to the Newtabpage should you use it
 printf """
