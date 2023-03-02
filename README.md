@@ -83,13 +83,11 @@ If you dont want to use the Snap, [here is a guide on how to replace the Snap wi
 ## More Detailed explanation
 Firefox is not really privacy friendly. It has very bad presets and even if you apply all GUI Settings to make it more private, remove Google etc., you still have lots of stuff under the hood and even some Google presets stay ("top site" or others).
 
-But Firefox is very modular, with nearly every setting being changeable with the user.js, a config file that overwrites states settings on every launch. This is awesome, as the Tor-Browser uses these settings to become the most secure browser, and Arkenfox is a long-existing preset of changes that are pretty much the same as those from the Tor-Browser.
+But Firefox is very modular, with nearly every setting being changeable with the user.js, a config file that overwrites inserted settings on every launch. This is awesome, as the Tor-Browser uses these settings to become the most secure browser, and Arkenfox is a long-existing preset of changes that are pretty much the same as those from the Tor-Browser.
 
-The Arkenfox team saves us a lot of effort, the integrated links and sources are awesome, and they also include deactivated unnessecary settings (outdated, already covered, contraproductive) that you would maybe change accidently, thinking they improve privacy.
+The Arkenfox team saves us a lot of effort, the integrated links and sources are awesome, and they also include deactivated unnessecary settings (outdated, already covered, contraproductive) that you could change accidently, thinking they improve privacy.
 
-The problem is, that Arkenfox-Firefox will not work great for daily usage. You lose way too much functionality, that is not actually dangerous, so instead of creating my own user.js (stupid efford) I looked through that whole user.js and changed only the annoying settings, resulting in this minimal changeset that completely changes the experience. 
-
-Pocket News can be manually disabled, the rest of the Pocket integration is a bit annoying and I am not sure if it harms privacy somehow.
+The problem is, that Arkenfox-Firefox will not work great for daily usage. You lose way too much functionality which is not actually dangerous, so instead of creating my own user.js (stupid efford) I looked through that user.js and changed only the annoying settings, resulting in this minimal changeset that completely changes the experience. 
 
 If you have any improvements or changes you wish, please create an issue report. 
 
@@ -113,4 +111,3 @@ Firefox settings change a lot, for example the recent change from
 
 
 This makes updating always time-consuming so I am happy for help on this project! Just fork it and create a pull request for new versions if you like.
-
