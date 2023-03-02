@@ -17,7 +17,15 @@ Remove the "#" before that line in the following install command to disable it.
 ## How to use
 I created a script automatically changing settings in Arkenfox and adding a few lines to the File.
 
-Choose the version you use and copy-paste the commands into your Terminal (`Ctrl+Alt+T` and `Ctrl+Shift+V`)
+Choose the version you use and copy-paste the commands into your Terminal (`Ctrl+Alt+T` and `Ctrl+Shift+V`). 
+
+You will be asked questions, information to answer them can be found here:
+
+- [Dangers of Captive Portals](https://www.eff.org/deeplinks/2017/08/how-captive-portals-interfere-wireless-security-and-privacy)
+- [Is Pocket a privacy Threat? (Reddit)](https://www.reddit.com/r/privacy/comments/e1unj8/comment/f8rzn38/?utm_source=share&utm_medium=web2x&context=3)
+- [Pocket Privacy Policy](https://getpocket.com/en/privacy/)
+- [Browser Fingerprinting: Conver your tracks, EFF](https://coveryourtracks.eff.org/)
+- [Firefox on Browser fingerprinting (no they dont block it by default)](https://www.mozilla.org/en-US/firefox/features/block-fingerprinting/)
 
 If you are unsure what Firefox version you use, try these commands:
 ```
@@ -29,15 +37,9 @@ snap run firefox #snap
 ### 1. Native Version
 likely preinstalled, Linux Mint, Debian, Fedora, Manjaro, POP!_OS all should be the same
 ```
-mkdir -P ~/Tools/Scripts/
-cd ~/Tools/Scripts/
-wget https://raw.githubusercontent.com/trytomakeyouprivate/Arkenfox-softening/main/arkenfox-script.sh
-
-# disable letterboxing (reduces browser window size against fingerprinting)
-# sed -i 's/"#sed -i 's/resistFingerprinting.letterboxing"/"sed -i 's/resistFingerprinting.letterboxing"/g' arkenfox-script.sh
-
-chmod +x arkenfox-script.sh
-sh arkenfox-script.sh
+wget https://raw.githubusercontent.com/trytomakeyouprivate/Arkenfox-softening/main/native.sh
+chmod +x native.sh
+./native.sh
 ```
 
 You may want to use Mozillas official Flatpak Version for codec support (Fedora, OpenSUSE) or containerization.
@@ -45,35 +47,17 @@ You may want to use Mozillas official Flatpak Version for codec support (Fedora,
 ### 2. Flatpak Version
 [Flathub version recommended](https://dl.flathub.org/repo/appstream/org.mozilla.firefox.flatpakref), containerized, works fine apart from KDEConnect and Keepass-browser Addons
 ```
-mkdir -P ~/Tools/Scripts/
-cd ~/Tools/Scripts/
-wget https://raw.githubusercontent.com/trytomakeyouprivate/Arkenfox-softening/main/arkenfox-script.sh
-
-# Modify to work with Flatpak
-sed -i 's/"~/.mozilla/firefox/"/"~/.var/app/org.mozilla.firefox/.mozilla/firefox/"/g' arkenfox-script.sh
-
-# disable letterboxing (reduces browser window size against fingerprinting)
-# sed -i 's/"#sed -i 's/resistFingerprinting.letterboxing"/"sed -i 's/resistFingerprinting.letterboxing"/g' arkenfox-script.sh
-
-chmod +x arkenfox-script.sh
-sh arkenfox-script.sh
+wget https://raw.githubusercontent.com/trytomakeyouprivate/Arkenfox-softening/main/flatpak.sh
+chmod +x flatpak.sh
+./flatpak.sh
 ```
 
 ### 3. Snap Version
 Ubuntu will keep on using it as default, making the use of the native version difficult.
 ```
-mkdir -P ~/Tools/Scripts/
-cd ~/Tools/Scripts/
-wget https://raw.githubusercontent.com/trytomakeyouprivate/Arkenfox-softening/main/arkenfox-script.sh
-
-# modify to work with Snap
-sed -i 's/"~/.mozilla"/"~/snap/firefox/common/.mozilla"/g' arkenfox-script.sh
-
-# disable letterboxing (reduces browser window size against fingerprinting)
-# sed -i 's/"#sed -i 's/resistFingerprinting.letterboxing"/"sed -i 's/resistFingerprinting.letterboxing"/g' arkenfox-script.sh
-
-chmod +x arkenfox-script.sh
-sh arkenfox-script.sh
+wget https://raw.githubusercontent.com/trytomakeyouprivate/Arkenfox-softening/main/snap.sh
+chmod +x snap.sh
+./snap.sh
 ```
 
 If you dont want to use the Snap, [here is a guide on how to replace the Snap with the DEB](https://www.omgubuntu.co.uk/2022/04/how-to-install-firefox-deb-apt-ubuntu-22-04). Easiest is to just uninstall it and install the Flatpak, but Ubuntu will make using Flatpak hard too, so just switch to Fedora instead ;D 
