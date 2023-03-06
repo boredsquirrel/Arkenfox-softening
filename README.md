@@ -12,6 +12,7 @@ There is the option to disable Letterboxing included. Letterboxing may add grey 
 
 Individual changes like that are included in the interactive chooser, which you run at startup to configure your own overwrite-script.
 
+If you change your opinion, you can run `chooser.sh` as often as you like.
 ---
 
 ## How to use
