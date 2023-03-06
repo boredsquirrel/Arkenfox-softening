@@ -118,6 +118,8 @@ WantedBy=timers.target""" > ~/.config/systemd/user/arkenfox-mod.service
 systemctl --user enable arkenfox-mod.service
 
 # remove initial lines for future updates
+cd ~/.local/bin/
+
 wget https://github.com/trytomakeyouprivate/Arkenfox-softening/raw/main/script-cleaner.sh
 
 chmod +x script-cleaner.sh
