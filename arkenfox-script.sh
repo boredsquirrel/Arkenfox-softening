@@ -1,6 +1,8 @@
 #!/bin/sh
 
-notify-send -a "Arkenfox-install" -t 4000 "Preparation" "Please close Firefox, if it is running."
+notify-send -a "Arkenfox-install" -t 5000 "Preparation" "Please close Firefox, if it is running."
+
+sleep 10
 
 mkdir ~/.mozilla/firefox/ARKENFOX
 
@@ -12,6 +14,9 @@ wget -O https://raw.githubusercontent.com/arkenfox/user.js/master/user.js
 sed -i 's/identity.fxaccounts.enabled", false/identity.fxaccounts.enabled", true/g' user.js
 
 # allow search engine shortcuts --------
+
+notify-send -a "Arkenfox-install" -t 8000 "Keywords" "Keywords like 'ddg' or 'wiki' can be configured, make sure you trust the search engines."
+
 sed -i 's/keyword.enabled", false/keyword.enabled", true/g' user.js
 
 # allow new version notes -----------
@@ -31,6 +36,7 @@ sed -i 's/clearOnShutdown.sessions", true/clearOnShutdown.sessions", false/g' us
 # Cosmetic: prevent Amazon, Google etc. from being pinned to the Newtabpage should you use it
 printf """
 user_pref("browser.newtabpage.pinned","");""" >> user.js
+
 printf """
 # remove Google & co. from "top sites"
 user_pref("browser.newtabpage.activity-stream.improvesearch.topSiteSearchShortcuts.havePinned","");""" >> user.js
@@ -62,14 +68,10 @@ zenity --info --text="Please install NoScript and disable WebGL on all levels, \
 
 xdg-open https://addons.mozilla.org/en-US/firefox/addon/noscript/
 
-notify-send -a "Arkenfox install" -t 15000 "Captive Portal" '"captive.kuketz.de" will be used to detect captive portals. You can change it in the settings of "arkenfox-script"'
-
-xdg-open http://captive.kuketz.de
-
 xdg-open https://github.com/trytomakeyouprivate/Arkenfox-softening/blob/main/Addon-recommendations.md
 
 printf """[Desktop Entry]
-Exec=~/Tools/Scripts/arkenfox-script.sh
+Exec=~/.local/bin/arkenfox-script.sh
 GenericName=Downloads the latest Arkenfox version, applies softening
 Icon=preferences-web-browser-ssl
 Name=Update Arkenfox""" > ~/.local/share/applications/Update-Arkenfox.desktop
@@ -82,5 +84,3 @@ wget https://github.com/trytomakeyouprivate/Arkenfox-softening/raw/main/script-c
 
 chmod +x script-cleaner.sh
 sh script-cleaner.sh
-
-fi
