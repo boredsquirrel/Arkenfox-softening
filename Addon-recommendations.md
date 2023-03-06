@@ -41,7 +41,7 @@ Not recommended anymore, outdated and not advanced enough to really help.
 
 It could even create a unique browser fingerprint.
 
-## ![Image](https://addons.mozilla.org/user-media/addon_icons/2738/2738435-64.png?modified=042b804c) [KeepassXC integration](https://addons.mozilla.org/en-US/firefox/addon/keepassxc-browser/)
+## ![Image](https://addons.mozilla.org/user-media/addon_icons/917/917354-64.png?modified=1648138451) [KeepassXC integration](https://addons.mozilla.org/en-US/firefox/addon/keepassxc-browser/)
 This addon does not work on Snap or Flatpak yet, as well as other Addons commnicating with installed Apps.
 
 It allows you to use the very secure KeepassXC password storage with automatic input.
@@ -110,7 +110,17 @@ For using multiple accounts on the same site simultaneously, an Addon is not nee
 
 It is also not needed, if you want to login to a site only in a specific container while saving your cookies for that domain (Settings->Privacy->Cookies->Manage Exclusions, i.e. you stay logged in, but normally you are not, only if you enter that container.
 
-## VPN Addons...
+## VPN Addons... ![Image](https://addons.mozilla.org/user-media/addon_icons/872/872622-64.png?modified=0f9dc327) ![Image](https://addons.mozilla.org/user-media/addon_icons/2273/2273849-64.png?modified=fa3be6ce) ![Image](https://addons.mozilla.org/user-media/addon_icons/817/817620-64.png?modified=64d09f2b)
 are bullshit. Use a real paid VPN service or host your own.
 
-A good VPN app like Mullvad supports Network blocking on early boot and for all apps, not just the Browser.
+A good VPN App like Mullvad supports Network blocking on early boot and for all apps, not just the Browser. Without a firewall ([OpenSnitch](https://github.com/evilsocket/opensnitch/releases/latest) for Linux and Mac, [SimpleWall](https://github.com/henrypp/simplewall/releases/latest) for Windows) using a VPN just in the browser makes no sense for most scenarios.
+
+## "Small change addons"
+There are tons of addons where all they do is change 1-2 settings in your `about:config`
+
+- [Reject webp](https://addons.mozilla.org/en-US/firefox/addon/dont-accept-webp/)
+- [Disable WebRTC](https://addons.mozilla.org/en-US/firefox/addon/happy-bonobo-disable-webrtc)
+- [Toggle RFP](https://addons.mozilla.org/en-US/firefox/addon/toggle-resist-fingerprinting/)
+- ...
+
+These addons might not be bad, but may get outdated and often do stuff the Arkenfox user.js already does, or what you could easily find searching for what you want in the user.js (embedded documentation!) or in the `about:config`
