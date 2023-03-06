@@ -20,7 +20,7 @@ notify-send -a "Arkenfox-install" -t 8000 "Keywords" "Keywords like 'ddg' or 'wi
 sed -i 's/keyword.enabled", false/keyword.enabled", true/g' user.js
 
 # allow new version notes -----------
-sed -i 's/user_pref("browser.startup.homepage_override.mstone", "ignore");/"//user_pref("browser.startup.homepage_override.mstone", "ignore");"/g' user.js
+sed -i '/homepage_override.mstone", "ignore/d' user.js
 
 # Restore session, don't autodelete everything ------------------------
 sed -i 's/startup.homepage", "about:blank"/startup.homepage", 3/g' user.js
