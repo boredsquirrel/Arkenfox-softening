@@ -64,7 +64,10 @@ while true; do
 done
 
 
+# add notification and fi at new end of script
 printf """
+notify-send -a 'Updater' 'Arkenfox' 'Firefox Arkenfox user.js updated and customized.'
+
 fi""" >> arkenfox-script.sh
 
 chmod +x arkenfox-script.sh
