@@ -38,7 +38,7 @@ snap run firefox #snap
 likely preinstalled, Linux Mint, Debian, Fedora, Manjaro, POP!_OS all should be the same
 ```
 wget https://raw.githubusercontent.com/trytomakeyouprivate/Arkenfox-softening/main/chooser.sh
-sed '5,9d' chooser.sh
+sed '7,11d' chooser.sh
 chmod +x chooser.sh
 ./chooser.sh
 ```
@@ -49,7 +49,7 @@ You may want to use Mozillas official Flatpak Version for codec support (Fedora,
 [Flathub version recommended](https://dl.flathub.org/repo/appstream/org.mozilla.firefox.flatpakref), containerized, works fine apart from KDEConnect and Keepass-browser Addons
 ```
 wget https://raw.githubusercontent.com/trytomakeyouprivate/Arkenfox-softening/main/chooser.sh
-sed '8,9d' chooser.sh
+sed '10,11d' chooser.sh
 chmod +x chooser.sh
 ./chooser.sh
 ```
@@ -58,7 +58,7 @@ chmod +x chooser.sh
 Ubuntu will keep on using it as default, making the use of the native version difficult.
 ```
 wget https://raw.githubusercontent.com/trytomakeyouprivate/Arkenfox-softening/main/chooser.sh
-sed '6,7d' chooser.sh
+sed '7,9d' chooser.sh
 chmod +x chooser.sh
 ./chooser.sh
 ```
