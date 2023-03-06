@@ -48,11 +48,21 @@ while true; do
     case $yn in
         [Yy]* ) printf""" 
 # Enable Pocket news (Start page) ------
-sed -i 's/discoverystreamfeed", false/discoverystreamfeed", true/g' user.js && break;;
+sed -i 's/discoverystreamfeed", false/discoverystreamfeed", true/g' arkenfox-script.sh && break;;
         [Nn]* ) break;;
         * ) echo "Please answer yes or no.";;
     esac
 done
+
+while true; do
+    read -p "Your browsing history will be kept for 7 days. Do you want to change that? (y/n) " yn
+    case $yn in
+        [Yy]* ) read -p "How many days then? (0 is possible) " days && sed -i 's/history_expire_days",7/history_expire_days",$days/g' arkenfox-script.sh && break;;
+        [Nn]* ) break;;
+        * ) echo "Please answer yes or no.";;
+    esac
+done
+
 
 printf """
 fi""" >> arkenfox-script.sh
