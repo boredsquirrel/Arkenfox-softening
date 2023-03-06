@@ -54,17 +54,19 @@ sed -i 's/webgl.disabled", true/webgl.disabled", false/g' user.js
 
 cd ~/.mozilla/firefox/
 
+cp *default-release/* ARKENFOX
+
 printf"""[Profile2]
 Name=Arkenfox
 IsRelative=1
 Path=ARKENFOX
 """ >> profiles.ini
 
-notify-send -a "Arkenfox-install" -t 20000 "Info" "The softened Arkenfox profile has been created. Under 'about:profiles' you can access the normal Profile for Banking sites and others that may not work. Firefox will open, choose the profile 'Arkenfox' to continue."
+notify-send -a "Arkenfox-install" -t 40000 "Info" "The softened Arkenfox profile has been created. Under 'about:profiles' you can access the normal Profile for Banking sites and others that may not work. Firefox will open, choose the profile 'Arkenfox' to continue. Your profile was copied so it will persist as it now is. You can delete the *default and *default-release folders."
 
 firefox -P 
 
-zenity --info --text="Please install NoScript and disable WebGL on all levels, \n Default, Trusted and Untrusted. You can enable it manually. \." --title="Warning!"
+notify-send -a "Arkenfox-install" -t 30000 "Warning!" "Please install NoScript and disable WebGL on all levels (Default, Trusted and Untrusted). You can enable it manually if Webapps, Games or Maps require it."
 
 xdg-open https://addons.mozilla.org/en-US/firefox/addon/noscript/
 
@@ -80,6 +82,42 @@ notify-send -a "Arkenfox install" -t 10000 "Updater" 'An Appstarter called "Upda
 
 cd ~
 
+# Create Systemd services
+sudo ln -s /usr/lib/systemd/system/arkenfox* /etc/systemd/system/
+
+# unit
+printf """[Unit]
+Description=A job to update and modify the Arkenfox user.js
+
+[Service]
+Type=simple
+ExecStart=%h/.local/bin/arkenfox-script.sh
+
+[Install]
+WantedBy=default.target""" ~/.config/systemd/user/arkenfox-mod.service
+
+# timer
+printf """[Unit]
+Description=Schedule Arkenfox update daily
+RefuseManualStart=no  # Allow manual starts
+RefuseManualStop=no   # Allow manual stops
+
+[Timer]
+#Execute job if it missed a run due to machine being off
+Persistent=true
+#Run 120 seconds after boot for the first time
+OnBootSec=120
+#Run every day at noon
+OnCalendar=* *-*-* 12:00:00
+#File describing job to execute
+Unit=arkenfox-mod.service
+
+[Install]
+WantedBy=timers.target""" > ~/.config/systemd/user/arkenfox-mod.service
+
+systemctl --user enable arkenfox-mod.service
+
+# remove initial lines for future updates
 wget https://github.com/trytomakeyouprivate/Arkenfox-softening/raw/main/script-cleaner.sh
 
 chmod +x script-cleaner.sh
