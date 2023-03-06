@@ -3,6 +3,8 @@ mkdir -P ~/.local/bin
 cd ~/.local/bin
 wget https://raw.githubusercontent.com/trytomakeyouprivate/Arkenfox-softening/main/arkenfox-script.sh
 
+rm arkenfox-script.sh
+
 #flatpak
 sed -i 's/"~/.mozilla/firefox/"/"~/.var/app/org.mozilla.firefox/.mozilla/firefox/"/g' arkenfox-script.sh
 #snap
@@ -18,7 +20,6 @@ sed -i 's/resistFingerprinting.letterboxing", true/resistFingerprinting.letterbo
         * ) echo "Please answer yes or no.";;
     esac
 done
-
 
 while true; do
     read -p "Do you want to enable Captive Portal functionality, using captive.kuketz.de (This also disables HTTPS-only mode, second browser is strongly recommended) ? (y/n) " yn
