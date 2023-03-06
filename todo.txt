@@ -1,3 +1,0 @@
-- integrate prefscleaner
-- systemd timer
-- choosing between options with zenity
