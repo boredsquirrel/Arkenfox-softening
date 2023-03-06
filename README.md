@@ -10,7 +10,7 @@ This script enables WebGL, to run certain Map sites and Online-Games. [Use NoScr
 
 There is the option to disable Letterboxing included. Letterboxing may add grey bars to your browser window if the ratio is not 16:9 (as far as I know), preventing Websites fingerprinting you due to a special Screen size. This may have a bigger impact on experience than you want (although disabled in fullscreen, e.g. when watching a movie).
 
-Remove the "#" before that line in the following install command to disable it.
+Individual changes like that are included in the interactive chooser, which you run at startup to configure your own overwrite-script.
 
 ---
 
