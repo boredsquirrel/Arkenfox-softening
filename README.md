@@ -89,6 +89,7 @@ I changed it quite often now, but it should be best now.
 3. Edit the chooser: by default the path is renamed twice, only the renaming that is needed is kept
 4. Chooser allows to edit the arkenfox-script for applying settings that may be unwanted
 5. The arkenfox script then downloads the user.js and applies changes to it, as well as executing the update timer
+6. In the end the arkenfox script launches a scriptcleaner that removes lines only needed for startup and after that deletes itself.
 
 ## Related projects
 
