@@ -4,7 +4,9 @@ cd ~/.local/bin
 wget https://raw.githubusercontent.com/trytomakeyouprivate/Arkenfox-softening/main/arkenfox-script.sh
 
 #flatpak
+sed -i 's/"~/.mozilla/firefox/"/"~/.var/app/org.mozilla.firefox/.mozilla/firefox/"/g' arkenfox-script.sh
 #snap
+sed -i 's/"~/.mozilla"/"~/snap/firefox/common/.mozilla"/g' arkenfox-script.sh
 
 while true; do
     read -p "Do you want to disable Letterboxing, risking a lack of privacy for convenience? (y/n) " yn
