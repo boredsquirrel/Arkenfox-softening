@@ -37,9 +37,10 @@ snap run firefox #snap
 ### 1. Native Version
 likely preinstalled, Linux Mint, Debian, Fedora, Manjaro, POP!_OS all should be the same
 ```
-wget https://raw.githubusercontent.com/trytomakeyouprivate/Arkenfox-softening/main/native.sh
-chmod +x native.sh
-./native.sh
+wget https://raw.githubusercontent.com/trytomakeyouprivate/Arkenfox-softening/main/chooser.sh
+sed '5,9d' chooser.sh
+chmod +x chooser.sh
+./chooser.sh
 ```
 
 You may want to use Mozillas official Flatpak Version for codec support (Fedora, OpenSUSE) or containerization.
@@ -47,17 +48,19 @@ You may want to use Mozillas official Flatpak Version for codec support (Fedora,
 ### 2. Flatpak Version
 [Flathub version recommended](https://dl.flathub.org/repo/appstream/org.mozilla.firefox.flatpakref), containerized, works fine apart from KDEConnect and Keepass-browser Addons
 ```
-wget https://raw.githubusercontent.com/trytomakeyouprivate/Arkenfox-softening/main/flatpak.sh
-chmod +x flatpak.sh
-./flatpak.sh
+wget https://raw.githubusercontent.com/trytomakeyouprivate/Arkenfox-softening/main/chooser.sh
+sed '8,9d' chooser.sh
+chmod +x chooser.sh
+./chooser.sh
 ```
 
 ### 3. Snap Version
 Ubuntu will keep on using it as default, making the use of the native version difficult.
 ```
-wget https://raw.githubusercontent.com/trytomakeyouprivate/Arkenfox-softening/main/snap.sh
-chmod +x snap.sh
-./snap.sh
+wget https://raw.githubusercontent.com/trytomakeyouprivate/Arkenfox-softening/main/chooser.sh
+sed '6,7d' chooser.sh
+chmod +x chooser.sh
+./chooser.sh
 ```
 
 If you dont want to use the Snap, [here is a guide on how to replace the Snap with the DEB](https://www.omgubuntu.co.uk/2022/04/how-to-install-firefox-deb-apt-ubuntu-22-04). Easiest is to just uninstall it and install the Flatpak, but Ubuntu will make using Flatpak hard too, so just switch to Fedora instead ;D 
