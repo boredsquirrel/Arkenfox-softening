@@ -80,6 +80,16 @@ If you have any improvements or changes you wish, please create an issue report.
 
 Spread this script, fork it, change it, help make hardened Firefox more popular! You just cant install Arkenfox on some random persons computer, but this script should be totally fine.
 
+### How this script works
+
+I changed it quite often now, but it should be best now.
+
+1. Determine what version you use
+2. Download the chooser
+3. Edit the chooser: by default the path is renamed twice, only the renaming that is needed is kept
+4. Chooser allows to edit the arkenfox-script for applying settings that may be unwanted
+5. The arkenfox script then downloads the user.js and applies changes to it, as well as executing the update timer
+
 ## Related projects
 
 ### [Simple Context menu](https://github.com/trytomakeyouprivate/Simple-Firefox-Menus)
