@@ -66,6 +66,8 @@ chmod +x chooser.sh
 
 If you dont want to use the Snap, [here is a guide on how to replace the Snap with the DEB](https://www.omgubuntu.co.uk/2022/04/how-to-install-firefox-deb-apt-ubuntu-22-04). Easiest is to just uninstall it and install the Flatpak, but Ubuntu will make using Flatpak hard too, so just switch to Fedora instead ;D 
 
+Also [there is UnSnap](https://github.com/popey/unsnap), a really nice tool replacing installed Snaps with Flatpaks as well.
+
 ---
 
 ## More Detailed explanation
