@@ -94,7 +94,7 @@ Type=simple
 ExecStart=%h/.local/bin/arkenfox-script.sh
 
 [Install]
-WantedBy=default.target""" ~/.config/systemd/user/arkenfox-mod.service
+WantedBy=default.target""" >> ~/.config/systemd/user/arkenfox-mod.service
 
 # timer
 printf """[Unit]
@@ -113,7 +113,7 @@ OnCalendar=* *-*-* 12:00:00
 Unit=arkenfox-mod.service
 
 [Install]
-WantedBy=timers.target""" > ~/.config/systemd/user/arkenfox-mod.service
+WantedBy=timers.target""" > ~/.config/systemd/user/arkenfox-mod.timer
 
 systemctl --user enable arkenfox-mod.service
 
