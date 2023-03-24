@@ -1,3 +1,1 @@
-- [ ] integrate prefscleaner
-- [ ] add Windows and Mac support (merge requests, no time to do myself)
-- [ ] nicer homepage?
+
