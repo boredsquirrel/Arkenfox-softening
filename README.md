@@ -56,7 +56,7 @@ chmod +x chooser.sh
 You may want to use Mozillas official Flatpak Version for Video support on all Distros and Containerization, especially if you use a stable Distro like Debian, RockyLinux, Ubuntu LTS e.g.
 
 ### 2. Flatpak Version
-[Flathub version recommended](https://dl.flathub.org/repo/appstream/org.mozilla.firefox.flatpakref), containerized, works fine apart from KDEConnect and Keepass-browser Addons (*native messaging*) as well as drag-and-drop or hardware security keys. 
+[Flathub version recommended](https://dl.flathub.org/repo/appstream/org.mozilla.firefox.flatpakref), containerized, works fine apart from some Addons (*native messaging*) as well as drag-and-drop or hardware security keys. 
 
 ```
 wget https://raw.githubusercontent.com/trytomakeyouprivate/Arkenfox-softening/main/chooser.sh
