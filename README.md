@@ -12,6 +12,8 @@ I use this personally to make [Arkenfox](https://github.com/arkenfox/user.js) us
 
 ---
 
+## This script is not yet tested
+
 ***WARNING***
 This script enables WebGL, to run certain Map sites and Online-Games. [Use NoScript](https://addons.mozilla.org/en-US/firefox/addon/noscript/) and Block WebGL on `Default`, `Trusted` and `Untrusted` level. The few sites actually needing WebGL will probably tell you, and you can manually enable it. This is way better than having it blocked on all sites with a big complex user.js.
 
