@@ -4,32 +4,34 @@
 
 Arkenfox is done, but Firefoxes own parameters aren't everything that can increase your privacy.
 
-Be aware that Addons interfering with Network traffic, or Addons that are only Frontends for external services (translators, converters, etc.) will make you more unique or track you in general.
+Be aware that Addons interfering with Network traffic, or Addons that are only Frontends for external services (translators, converters, etc.) will make you more unique or track you actively.
 
 The Addon [Translate webpages](https://addons.mozilla.org/en-US/firefox/addon/traduzir-paginas-web/) ([Source Code](https://github.com/FilipePS/Traduzir-paginas-web) seems to be an exception, sending only Traffic to Google if you actively choose so.
+
+Firefox Translate, now preinstalled, uses a different method by entirely relying on local translation after downloading the database. Recommendation!
 
 ## ![Image](https://addons.mozilla.org/user-media/addon_icons/0/722-64.png?modified=238235f7) [NoScript](https://addons.mozilla.org/en-US/firefox/addon/noscript/)
 The only Addon installed on the Tor-Browser.
 
 My softening has enabled WebGL, so make sure to block it on all security levels in the settings.
 
-The presets are made for usability with many big tracking companies being on "Trust", you can change that under "Permissions per Website".
+NoScripts presets are made for usability with many big tracking companies being on "Trust", you can change that when right-clicking on the addon icon, there on the "Snake with Tools" icon, then under "Permissions per Website".
 
 In general it doesn't hurt to block all sites from using:
 
 - WebGL (Games and some Maps need that)
 - Ping
-- Noscript (Sites may display their "no javascript" variant or simply refuse to work. As useless as the "Do not track" setting)
-- Unrestricted CSS (Sites will load wayslower but its more secure)
+- Noscript (Sites may display their "no javascript" variant or simply refuse to work. As useless as the "Do not track" setting, as nearly no site respects it, but you can be tracked through it)
+- Unrestricted CSS (Sites will load wayyy slower but its more secure)
 - LAN
 - others
 
-Unrestricted CSS is way faster, so if your browser gets too slow for your needs, enable it for trusted domains.
+Unrestricted CSS is way faster, so if your browser gets too slow for your needs, enable it for trusted domains. Bad CSS can cause memory overflows, afaik there was an issue in Firefox that made it vulnerable towards that.
 
 ## ![Image](https://addons.mozilla.org/user-media/addon_icons/607/607454-64.png?modified=mcrushed) [UBlock Origin](https://addons.mozilla.org/en-US/firefox/addon/ublock-origin)
-This Addon increases security, as Arkenfox removes Googles "Safe Browsing". It uses local filterlists to block tracking and malware domains, ads and more.
+Ublock Origin increases security, as Arkenfox removes Googles "Safe Browsing". It uses local filterlists to block tracking and malware domains, ads and more.
 
-Using the right filterlists you can also use it to block Coockie Banners or "Social media" icons.
+Using the right filterlists you can also use it to block Coockie Banners or "Social media" icons. Or using the small "dropper" tool you can remove any site elements you want, cookie banners, ads, annoying buttons,...
 
 ## ![Image](https://addons.mozilla.org/user-media/addon_icons/2738/2738435-64.png?modified=042b804c) [LibRedirect](https://addons.mozilla.org/en-US/firefox/addon/libredirect/)
 This addon redirects common tracking monopoles to privacy-friendly servers hosted by volunteers, running OpenSource software.
@@ -69,26 +71,34 @@ With that addon you can convert any URL-string to one, by replacing the word wit
 - [Search for Fedora COPR repositories](https://copr.fedorainfracloud.org/coprs/fulltext/?fulltext=%s)
 - [Search for Apps on Flatpaks Github repo](https://github.com/search?q=org%3Aflathub+%s)
 
+[A maintained list can be found here](https://github.com/trytomakeyouprivate/Search-Engines)
+
 In the settings you can assign a shortcut to this search engine.
 
 While others use Google for everything, you can now use the most efficient choice and be faster and more private!
 
 ## ![Image](https://addons.mozilla.org/user-media/addon_icons/2299/2299025-64.png?modified=d36e7421) [Snowflake](https://addons.mozilla.org/en-US/firefox/addon/torproject-snowflake/)
-This addon helps people in censored countries use your Browser as a proxie to access the Tor-network.
+This addon helps people in censored countries use your Browser as a proxy to access the Tor-network.
 
-If all entry-nodes are blacklisted on their DNS-servers or more, this is the only option for them to get free media and news.
+If all entry-nodes are blacklisted on their DNS-servers and Internet Providers, this is the only option for them to get free media and news.
 
-It is not illegal in any way to connect to Tor Entrynodes. You may want to use a good VPN though.
+It is not illegal in any way to connect to Tor Entry-Nodes. Also, nobody will abuse this, as the Connection is quite slow.
+
+It's easy to help people fight evil governments!
+
+Note: You will need to have WebRTC enabled, which is otherwise used for Videocalls e.g.
 
 ## ![Image](https://addons.mozilla.org/user-media/addon_icons/2750/2750338-64.png?modified=e01462ae) [Lightbeam](https://addons.mozilla.org/en-US/firefox/addon/lightbeam-chikl/)
 This Addon analyzes the "families" of sites you visit, who share what resources and may gather your data. 
 
 Really interesting but may be negative on Privacy.
 
-## ![Image](https://addons.mozilla.org/user-media/addon_icons/839/839767-64.png?modified=b06fa7ed) [ClearURLs](https://addons.mozilla.org/en-US/firefox/addon/clearurls/)
+## [ClearURLs](https://addons.mozilla.org/en-US/firefox/addon/clearurls/)
 If you dont trust Firefox's URL cleaner, you can use that one, which is more agressive.
 
 Removes tracking snippets from lots of URLs. May increase loading time and break certain sites, especially online payment sites!
+
+You can replace it with [a UBlock Origin Filterlist](https://raw.githubusercontent.com/DandelionSprout/adfilt/master/ClearURLs%20for%20uBo/clear_urls_uboified.txt).
 
 ## ![Image](https://addons.mozilla.org/user-media/addon_icons/888/888648-64.png?modified=mcrushed) [Temporary Containers](https://addons.mozilla.org/en-US/firefox/addon/temporary-containers/)
 This powerful addon allows you to open a tab quickly in a self-destructing container. 
@@ -98,13 +108,34 @@ You can also let the Addon delete that containers history when the tab is closed
 Makes the Private Mode pretty useless.
 
 ## ![Image](https://addons.mozilla.org/user-media/addon_icons/1473/1473396-64.png?modified=ed940113) [Smart RSS](https://addons.mozilla.org/en-US/firefox/addon/smart-rss-reader/)
-A nice local RSS feeder that doesnt phone anywhere, just loads content from sites you add
+A nice local RSS feeder that doesnt phone anywhere, just loads content from sites you add.
 
 ## ![Image](https://addons.mozilla.org/user-media/addon_icons/851/851843-64.png?modified=1648138451) [Awesome RSS](https://addons.mozilla.org/en-US/firefox/addon/awesome-rss/)
 Automatically searches for RSS feeds on sites you visit, right-clicking on the one you want allows you to add it to SmartRSS.
 
 ---
 
+## "Free Internet" Addons
+- [Bypass Paywalls Clean](https://gitlab.com/magnolia1234/bypass-paywalls-firefox-clean/-/releases)
+- Wayback Machine: WARNING, enable "private mode" or it will send every site you visit
+- Video Downloadhelper: Kinda shit, but works for some streams
+- Download all images: this is gold!
+- Sci-Hub X Now!
+- Soundcloud Downloader
+
+## Usability Addons
+- Undo close tab
+- Dark Background Light Text
+- Favicon Switcher: When using many sites with the same favicon
+- Limit Tabs: really useful against tab-hoarding
+- Webcompat reporter: Be aware that sites should only be reported when not working on vanilla Firefox! Your hardened browser may break more.
+- SingleFile: now supports compressed html containers!
+- 404 Bookmarks: find dead links and maybe archive them using Internet Archives
+- QR
+- Cache Favicons for Bookmarks: WARNING, favicons can be used to track you, as they only load when you are new
+- Unload Tabs
+- Webhint
+  
 ## Containers for isolation
 For using multiple accounts on the same site simultaneously, an Addon is not needed. Right-click on the "new tab" button and enter the Container menu.
 
