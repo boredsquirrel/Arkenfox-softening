@@ -1,5 +1,10 @@
-# [Arkenfox](https://github.com/arkenfox/user.js)-softening
-Harden Firefox, but not so much. Set Arkenfox up easily.
+# [Arkenfox](https://github.com/arkenfox/user.js)-helper ![Firefox Icon in ice-colors with a dark planet](https://raw.githubusercontent.com/trytomakeyouprivate/Arkenfox-softening/main/arkenfox-icon.png)
+
+Easy setup of Arkenfox, a tool to make your Firefox the most secure browser.
+
+Includes an override file that reduces the extreme settings, to make it usable for everyday tasks.
+
+Supports native (system App), Flatpak and Snap Firefox.
 
 - Keep tabs
 - Save history for a 7 days
