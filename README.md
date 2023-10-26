@@ -1,5 +1,5 @@
 # [Arkenfox](https://github.com/arkenfox/user.js)-softening
-Harden Firefox, but not so much.
+Harden Firefox, but not so much. Set Arkenfox up easily.
 
 - Keep tabs
 - Save history for a 7 days
@@ -12,7 +12,11 @@ I use this personally to make [Arkenfox](https://github.com/arkenfox/user.js) us
 
 ---
 
-## This script is not yet tested
+## How to install
+
+```
+curl -sSL https://github.com/trytomakeyouprivate/Arkenfox-softening/raw/main/setup | bash
+```
 
 ***WARNING***
 This script enables WebGL, to run certain Map sites and Online-Games. [Use NoScript](https://addons.mozilla.org/en-US/firefox/addon/noscript/) and Block WebGL on `Default`, `Trusted` and `Untrusted` level. The few sites actually needing WebGL will probably tell you, and you can manually enable it. This is way better than having it blocked on all sites with a big complex user.js.
@@ -25,12 +29,7 @@ If you change your opinion, you can run `chooser.sh` as often as you like.
 
 ---
 
-## How to use
-I created a script automatically changing settings in Arkenfox and adding a few lines to the File.
-
-Choose the version you use and copy-paste the commands into your Terminal (`Ctrl+Shift+V`). 
-
-You will be asked questions, information to answer them can be found here:
+## Some information
 
 - [Dangers of Captive Portals](https://www.eff.org/deeplinks/2017/08/how-captive-portals-interfere-wireless-security-and-privacy)
 - [Is Pocket a privacy Threat? (Reddit)](https://www.reddit.com/r/privacy/comments/e1unj8/comment/f8rzn38/?utm_source=share&utm_medium=web2x&context=3)
@@ -38,46 +37,10 @@ You will be asked questions, information to answer them can be found here:
 - [Browser Fingerprinting: Conver your tracks, EFF](https://coveryourtracks.eff.org/)
 - [Firefox on Browser fingerprinting (no they dont block it by default)](https://www.mozilla.org/en-US/firefox/features/block-fingerprinting/)
 
-If you are unsure what Firefox version you use, try these commands:
+## Versions
+With this new update, the setup works for Native, Flatpak and Snap.
 
-```
-firefox #native version
-flatpak run org.mozilla.firefox #flatpak
-snap run firefox #snap
-```
-
-### 1. Native Version
-likely preinstalled, Linux Mint, Debian, Fedora, Manjaro, POP!_OS all should be the same
-```
-wget https://raw.githubusercontent.com/trytomakeyouprivate/Arkenfox-softening/main/chooser.sh
-sed '7,11d' chooser.sh
-chmod +x chooser.sh
-./chooser.sh
-```
-
-You may want to use Mozillas official Flatpak Version for Video support on all Distros and Containerization, especially if you use a stable Distro like Debian, RockyLinux, Ubuntu LTS e.g.
-
-### 2. Flatpak Version
-[Flathub version recommended](https://dl.flathub.org/repo/appstream/org.mozilla.firefox.flatpakref), containerized, works fine apart from some Addons (*native messaging*) as well as drag-and-drop or hardware security keys. 
-
-```
-wget https://raw.githubusercontent.com/trytomakeyouprivate/Arkenfox-softening/main/chooser.sh
-sed '10,11d' chooser.sh
-chmod +x chooser.sh
-./chooser.sh
-```
-
-### 3. Snap Version
-Ubuntu will keep on using it as default, making the use of the native version difficult. The Snap has the same pros and cons as the Flatpak, but it comes from a proprietary store and may be slower.
-
-```
-wget https://raw.githubusercontent.com/trytomakeyouprivate/Arkenfox-softening/main/chooser.sh
-sed '7,9d' chooser.sh
-chmod +x chooser.sh
-./chooser.sh
-```
-
-If you dont want to use the Snap, [here is a guide on how to replace the Snap with the DEB](https://www.omgubuntu.co.uk/2022/04/how-to-install-firefox-deb-apt-ubuntu-22-04). Easiest is to just uninstall it and install the Flatpak, but Ubuntu will make using Flatpak hard too, so just switch to Fedora instead ;D 
+If you dont want to use the Snap, [here is a guide on how to replace the Snap with the DEB](https://www.omgubuntu.co.uk/2022/04/how-to-install-firefox-deb-apt-ubuntu-22-04). Easiest is to just uninstall it and install the Flatpak, but if Ubuntu makes using Flatpak hard too, just switch to Fedora instead ;D 
 
 Also [there is UnSnap](https://github.com/popey/unsnap), a really nice tool replacing installed Snaps with Flatpaks as well.
 
@@ -98,13 +61,17 @@ Spread this script, fork it, change it, help make hardened Firefox more popular!
 
 ### How this script works
 
-1. Determine what version you use
-2. Download the chooser
-3. Edit the chooser: `sed` removes unnessecary lines (these lines edit the firefox location in the actual arkenfox-script)
-4. Chooser allows to edit the arkenfox-script for applying arguable settings
-5. The arkenfox script then downloads the user.js and applies changes to it
-6. The script creates a desktop entry for updating it manually, as well as setting up a systemd service to do it automatically every day
-7. In the end the arkenfox script launches a scriptcleaner that removes lines only needed for startup.
+The new update changed basically everything, as the previous was just broken
+
+1. Detect wether to use kdialog, zenity or notify-send for GUI dialogs
+2. Detect the used Firefox Version and Directories
+3. Creates an Arkenfox Profile folder
+4. Change the profiles.ini to add the Arkenfox user
+5. Launch Firefox in -p mode, so that the user enables the Arkenfox user as default; closes Firefox again
+6. Downloads the Arkenfox git repo and the custom override, runs the updater from Arkenfox in "automatic mode" (piping "Y" into the script to skip the Y/N Dialog)
+7. Copying the user.js back to the Arkenfox folder, now the profile is ready
+8. Creating GUI Application launchers for Profile chooser and Arkenfox updater
+9. Creating a user systemd script to automatically run the arkenfox updater every day 
 
 ## Related projects
 
@@ -116,24 +83,13 @@ All this file does, is reducing the displayed options in the context menu, for e
 ### [Search Engines](https://github.com/trytomakeyouprivate/Search-Engines)
 Decentralize your Web usage using great search engines!
 
-### [Firefox for Linux TV](https://github.com/trytomakeyouprivate/Fedora-TV-KDE-Bigscreen)
-This is my try to create the perfect "Firefox for Linux TV" preset. Its a normally secure browser, using lots of snippets of the Arkenfox user.js, integrating many useful bookmarks, some Addons, a nice selection page and more, adjusting it to be used on a Linux TV.
-
 ## Contributing
 
-Firefox settings change a lot, for example the recent change from
-
-`user_pref("browser.startup.page", 3);`to  `user_pref("browser.startup.homepage", 3);`
-
+With the update, this should be fairly easy. So best is to read the Arkenfox user.js and find changes in new Firefox releases!
 
 This makes updating always time-consuming so I am happy for help on this project! Just fork it and create a pull request for new versions if you like.
 
 ## To-Do
-- [ ] TEST!
-- [ ] integrate prefscleaner
-- [ ] integrate "allow cookies" sites
-- [ ] preinstall some external Addons and enable some form of autoupdating: [BypassPaywallsClean](https://gitlab.com/magnolia1234/bypass-paywalls-firefox-clean/-/releases), ...
 - [ ] add Windows and Mac support (merge requests, no time to do myself)
   - Mac uses bash so should work easier
   - I got some rough Windows code from some suspicious AI
-- [ ] nicer homepage?
