@@ -1,4 +1,4 @@
-# [Arkenfox](https://github.com/arkenfox/user.js)-helper ![Firefox Icon in ice-colors with a dark planet](https://raw.githubusercontent.com/trytomakeyouprivate/Arkenfox-softening/main/arkenfox-icon.png)
+# [Arkenfox](https://github.com/arkenfox/user.js) helper ![Firefox Icon in ice-colors with a dark planet](https://raw.githubusercontent.com/trytomakeyouprivate/Arkenfox-softening/main/arkenfox-icon.png)
 
 Easy setup of Arkenfox, a tool to make your Firefox the most secure browser.
 
@@ -23,8 +23,11 @@ I use this personally to make [Arkenfox](https://github.com/arkenfox/user.js) us
 curl -sSL https://github.com/trytomakeyouprivate/Arkenfox-softening/raw/main/setup | bash
 ```
 
-***WARNING***
-This script enables WebGL, to run certain Map sites and Online-Games. [Use NoScript](https://addons.mozilla.org/en-US/firefox/addon/noscript/) and Block WebGL on `Default`, `Trusted` and `Untrusted` level. The few sites actually needing WebGL will probably tell you, and you can manually enable it. This is way better than having it blocked on all sites with a big complex user.js.
+## WARNING
+
+This script enables WebGL, to run certain Map sites and Online-Games. [Use NoScript](https://addons.mozilla.org/en-US/firefox/addon/noscript/) and Block WebGL on `Default`, `Trusted` and `Untrusted` level. The few sites actually needing WebGL will probably tell you, and you can manually enable it. This is way better than having it blocked on all sites with a big complex user.js, and you should use NoScript if you care about privacy.
+
+![WebGL Warning that NoScript displays](https://raw.githubusercontent.com/trytomakeyouprivate/Arkenfox-softening/main/webgl-maps.png)
 
 The option to disable Letterboxing is included. Letterboxing may add grey bars to your browser window if the ratio is not 16:9 (as far as I know), preventing Websites fingerprinting you due to a special Screen size. This may have a bigger impact on experience than you want (although disabled in fullscreen, e.g. when watching a movie) but makes your fingerprint more unified.
 
@@ -70,7 +73,7 @@ The new update changed basically everything, as the previous was just broken
 
 1. Detect wether to use kdialog, zenity or notify-send for GUI dialogs
 2. Detect the used Firefox Version and Directories
-3. Creates an Arkenfox Profile folder
+3. Creates an Arkenfox Profile folder and clones your current profile folder there
 4. Change the profiles.ini to add the Arkenfox user
 5. Launch Firefox in -p mode, so that the user enables the Arkenfox user as default; closes Firefox again
 6. Downloads the Arkenfox git repo and the custom override, runs the updater from Arkenfox in "automatic mode" (piping "Y" into the script to skip the Y/N Dialog)
