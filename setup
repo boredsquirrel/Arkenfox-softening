@@ -98,9 +98,7 @@ What is this directory?
 
 It belongs to the "Arkenfox Setup script" and contains the original user.js
 
-Its useful to detect changes, and store the original file.
-If you want to use Arkenfox, just copy it from here to your Profile folder.
-But this is probably not needed. Just ignore it then.
+To keep things sorted, the Arkenfox repo is cloned here. To restore the original arkenfox, just remove the user-overrides.js
 EOF
 
 # ----------- Backup and Copy of Profile folder -------
@@ -173,10 +171,10 @@ ARKDIR="$BASEDIR/ARKENFOX"
 cd $ARKDIR
 notify-send -a "Arkenfox Setup" "Downloading" "Cloning the Arkenfox repository, downloading the overrides.js,\nand running the updater."
 echo "Downloading Arkenfox..."
-git clone https://github.com/arkenfox/user.js || git pull https://github.com/arkenfox/user.js
-cd user.js/
-rm -f *.bat
-rm -rf wikipipi
+git clone https://github.com/arkenfox/user.js arkenfoxgit || git pull https://github.com/arkenfox/user.js
+cd arkenfoxgit/
+#rm -f *.bat
+#rm -rf wikipipi
 echo "Downloading the overrides.js..."
 wget https://raw.githubusercontent.com/trytomakeyouprivate/Arkenfox-softening/main/user-overrides.js
 echo "Running Arkenfoxes updater"
@@ -201,19 +199,20 @@ chmod +x autoupdater
 
 # Desktop entry creation
 
-cp ./icons/arkenfox/arkenfox-256px.png ~/.local/share/applications/arkenfox-icon.png
+wget https://raw.githubusercontent.com/trytomakeyouprivate/Arkenfox-softening/main/arkenfox-icon.png -O ~/.local/share/applications/arkenfox-icon.png
 
 cat > ~/.local/share/applications/Update-Arkenfox.desktop <<EOF
 [Desktop Entry]
-Exec=$ARKDIR/user.js/updater.sh
+Exec=$ARKDIR/arkenfoxgit/updater.sh
 GenericName=Downloads the latest Arkenfox version, applies softening
 Icon=$HOME/.local/share/applications/arkenfox-icon.png
 Name=Update Arkenfox
 EOF
 
 # Profile chooser Desktop Entry
-# Some apps may do this automatically!
-cp ./icons/profile-chooser/firefox-profilechooser256px.png ~/.local/share/applications/firefox-profilechooser.png
+# Some Firefox versions (RPM, Flatpak, ...) may do this automatically, so its useless
+# But I like the icon lol
+wget https://raw.githubusercontent.com/trytomakeyouprivate/Arkenfox-softening/main/profilechooser-icon.png ~/.local/share/applications/firefox-profilechooser.png
 
 cat > ~/.local/share/applications/Update-Arkenfox.desktop <<EOF
 [Desktop Entry]
@@ -231,7 +230,7 @@ Description=Runs the Arkenfox updater, applies your set changes
 
 [Service]
 Type=simple
-ExecStart=/bin/bash -c '$ARKDIR/autoupdater'
+ExecStart=/bin/bash -c '$ARKDIR/arkenfoxgit/autoupdater'
 Restart=always
 RestartSec=60
 
