@@ -26,7 +26,8 @@ user_pref("keyword.enabled", true);
 
 // Allow Firefoxes new Version notifications
 user_pref("browser.startup.homepage_override.mstone", "REPLACEWITHVERSIONNUMBER"); // what to do to remove this line?
-user_pref("browser.startup.homepage", 3);
+user_pref("browser.startup.homepage", "about:home");
+user_pref("browser.startup.page", 3);
 
 // History & Session
 // delete history after one week
@@ -47,6 +48,9 @@ user_pref("browser.newtabpage.activity-stream.improvesearch.topSiteSearchShortcu
 // System colors
 user_pref("browser.display.use_system_colors", true);
 
-user_pref("browser.cache.disk.enable", false);
-
 user_pref("webgl.disabled", false);
+
+
+// speed
+user_pref("network.http.max-persistent-connections-per-server" 30);
+user_pref("browser.cache.disk.enable", false);
