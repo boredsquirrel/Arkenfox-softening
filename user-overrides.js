@@ -24,6 +24,9 @@ user_pref("browser.sessionstore.restore_pinned_tabs_on_demand",true);
 // Allow search shortcuts (seems to be disabled?)
 user_pref("keyword.enabled", true);
 
+// Disable Letterboxing (remove the screenborders, this makes you fingerprintable)
+user_pref("privacy.resistFingerprinting.letterboxing", false);
+
 // Allow Firefoxes new Version notifications
 user_pref("browser.startup.homepage_override.mstone", "REPLACEWITHVERSIONNUMBER"); // what to do to remove this line?
 user_pref("browser.startup.homepage", "about:home");
