@@ -27,6 +27,9 @@ user_pref("keyword.enabled", true);
 // Disable Letterboxing (remove the screenborders, this makes you fingerprintable)
 user_pref("privacy.resistFingerprinting.letterboxing", false);
 
+// Allow Mozilla Addons Manager for regular behavior
+user_pref("privacy.resistFingerprinting.block_mozAddonManager", block);
+
 // Allow Firefoxes new Version notifications
 user_pref("browser.startup.homepage_override.mstone", "REPLACEWITHVERSIONNUMBER"); // what to do to remove this line?
 user_pref("browser.startup.homepage", "about:home");
@@ -57,3 +60,19 @@ user_pref("webgl.disabled", false);
 // speed
 user_pref("network.http.max-persistent-connections-per-server" 30);
 user_pref("browser.cache.disk.enable", false);
+
+// Language
+user_pref("intl.accept_languages", "de-DE, de");
+user_pref("javascript.use_us_english_locale", false); // [HIDDEN PREF]
+
+// Captive Portal & Connectivity Check
+// user_pref("captivedetect.canonicalURL", "");
+// user_pref("network.captive-portal-service.enabled", false); // [FF52+]
+// user_pref("network.connectivity-service.enabled", false);
+
+// enable the native system Portal (Flatpak)
+user_pref("widget.use-xdg-desktop-portal.file-picker", 1);
+user_pref("widget.use-xdg-desktop-portal.location", 1);
+user_pref("widget.use-xdg-desktop-portal.mime-handler", 1);
+user_pref("widget.use-xdg-desktop-portal.open-uri", 1);
+user_pref("widget.use-xdg-desktop-portal.settings", 1);
