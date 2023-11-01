@@ -46,11 +46,6 @@ user_pref("privacy.clearOnShutdown.cache", false);
 user_pref("privacy.clearOnShutdown.history", false);
 user_pref("privacy.clearOnShutdown.sessions", false);
 
-// remove pinned website ads
-user_pref("browser.newtabpage.pinned","");
-// remove Google & co. from "top sites"
-user_pref("browser.newtabpage.activity-stream.improvesearch.topSiteSearchShortcuts.havePinned","");
-
 // System colors
 user_pref("browser.display.use_system_colors", true);
 
