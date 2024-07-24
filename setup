@@ -2,7 +2,7 @@
 
 # Make sure Firefox is closed, to avoid any issues.
 # This uses Kdialog, zenity or notify-send as backup.
-# It will need to enforce the closing, as
+# It will need to enforce the closing of Firefox.
 
 SCRIPTPATH="$PWD"
 
@@ -16,7 +16,7 @@ kdialog_close() {
         notify-send -a "Arkenfox Setup" "Firefox Closed"
     elif [[ $result == "no" ]]; then
         echo "cancelled"
-        notify-send -a "Arkenfox-install" -t 5000 "Cancelled" "Setup cancelled, to avoid corruption of data." && exit
+        notify-send -a "Arkenfox-install" -t 5000 "Cancelled" "Setup cancelled, to avoid corruption of data." && exit && exit
     fi
 }
 
@@ -30,7 +30,7 @@ zenity_close() {
         notify-send -a "Arkenfox Setup" "Firefox Closed"
     elif [[ $result == "false" ]]; then
         echo "cancelled" &&\
-        notify-send -a "Arkenfox-install" -t 5000 "Cancelled" "Setup cancelled, to avoid corruption of data." && exit
+        notify-send -a "Arkenfox-install" -t 5000 "Cancelled" "Setup cancelled, to avoid corruption of data." && exit && exit
     fi
 }
 
@@ -167,18 +167,29 @@ esac
 
 # ---------- Install Arkenfox ---------
 
+# set profile folder
 ARKDIR="$BASEDIR/ARKENFOX"
 cd $ARKDIR
+
+# clone arkenfox
 notify-send -a "Arkenfox Setup" "Downloading" "Cloning the Arkenfox repository, downloading the overrides.js,\nand running the updater."
-echo "Downloading Arkenfox..."
+echo "Downloading Arkenfox and the overrides..."
+
 git clone https://github.com/arkenfox/user.js arkenfoxgit || git pull https://github.com/arkenfox/user.js
 cd arkenfoxgit/
 #rm -f *.bat
-#rm -rf wikipipi
+#rm -rf wiki
+
+# c
 echo "Downloading the overrides.js..."
-wget https://raw.githubusercontent.com/trytomakeyouprivate/Arkenfox-softening/main/user-overrides.js
+wget https://raw.githubusercontent.com/boredsquirrel/Arkenfox-softening/main/user-overrides.js
+
 echo "Running Arkenfoxes updater"
+notify-send -a "Arkenfox Setup" "Running..." "Running the Arkenfox updater and applying the overrides"
+
 echo "Y" | updater.sh &&\
+
+# copy result to parent folder (firefox main user directory)
 cp user.js ../
 
 # ------------ A real autoupdating script -------
@@ -186,8 +197,8 @@ cp user.js ../
 cat > autoupdater <<EOF
 #!/bin/bash
 
-# This script does not much, but update the user.js using the overrides,
-# and copy that result to the profile folder
+# This script does not much, but update the user.js using the upstream Arkenfox script, using my overrides,
+# and copy that result to the profile folder, override the older user.js
 
 echo "Y" | $ARKDIR/user.js/updater.sh &&\
 cp -f user.js ../
@@ -199,7 +210,7 @@ chmod +x autoupdater
 
 # Desktop entry creation
 
-wget https://raw.githubusercontent.com/trytomakeyouprivate/Arkenfox-softening/main/arkenfox-icon.png -O ~/.local/share/applications/arkenfox-icon.png
+wget https://raw.githubusercontent.com/boredsquirrel/Arkenfox-softening/main/arkenfox-icon.png -O ~/.local/share/applications/arkenfox-icon.png
 
 cat > ~/.local/share/applications/Update-Arkenfox.desktop <<EOF
 [Desktop Entry]
@@ -212,7 +223,7 @@ EOF
 # Profile chooser Desktop Entry
 # Some Firefox versions (RPM, Flatpak, ...) may do this automatically, so its useless
 # But I like the icon lol
-wget https://raw.githubusercontent.com/trytomakeyouprivate/Arkenfox-softening/main/profilechooser-icon.png ~/.local/share/applications/firefox-profilechooser.png
+wget https://raw.githubusercontent.com/boredsquirrel/Arkenfox-softening/main/profilechooser-icon.png ~/.local/share/applications/firefox-profilechooser.png
 
 cat > ~/.local/share/applications/Update-Arkenfox.desktop <<EOF
 [Desktop Entry]
@@ -223,7 +234,9 @@ Name=Firefox Profiles
 EOF
 
 # --------------- Create Systemd services -----------
+mkdir -p ~/.config/systemd/user
 
+# service
 cat > ~/.config/systemd/user/arkenfox-updater.service <<EOF
 [Unit]
 Description=Runs the Arkenfox updater, applies your set changes
