@@ -26,7 +26,7 @@ In general it doesn't hurt to block all sites from using:
 - LAN
 - others
 
-Unrestricted CSS is way faster, so if your browser gets too slow for your needs, enable it for trusted domains. Bad CSS can cause memory overflows, afaik there was an issue in Firefox that made it vulnerable towards that.
+Unrestricted CSS is way faster, so if your browser gets too slow for your needs, enable it for trusted domains. Bad CSS can cause memory overflows..
 
 ## ![Image](https://addons.mozilla.org/user-media/addon_icons/607/607454-64.png?modified=mcrushed) [UBlock Origin](https://addons.mozilla.org/en-US/firefox/addon/ublock-origin)
 Ublock Origin increases security, as Arkenfox removes Googles "Safe Browsing". It uses local filterlists to block tracking and malware domains, ads and more.
@@ -71,7 +71,7 @@ With that addon you can convert any URL-string to one, by replacing the word wit
 - [Search for Fedora COPR repositories](https://copr.fedorainfracloud.org/coprs/fulltext/?fulltext=%s)
 - [Search for Apps on Flatpaks Github repo](https://github.com/search?q=org%3Aflathub+%s)
 
-[A maintained list can be found here](https://github.com/trytomakeyouprivate/Search-Engines)
+[A maintained list can be found here](https://github.com/boredsquirrel/Search-Engines)
 
 In the settings you can assign a shortcut to this search engine.
 

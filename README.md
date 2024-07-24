@@ -1,4 +1,4 @@
-# [Arkenfox](https://github.com/arkenfox/user.js) helper ![Firefox Icon in ice-colors with a dark planet](https://raw.githubusercontent.com/trytomakeyouprivate/Arkenfox-softening/main/arkenfox-icon.png)
+# [Arkenfox](https://github.com/arkenfox/user.js) helper ![Firefox Icon in ice-colors with a dark planet](https://raw.githubusercontent.com/boredsquirrel/Arkenfox-softening/main/assets/images/arkenfox-icon.png)
 
 Easy setup of Arkenfox, a tool to make your Firefox the most secure browser.
 
@@ -20,14 +20,14 @@ I use this personally to make [Arkenfox](https://github.com/arkenfox/user.js) us
 ## How to install
 
 ```
-curl -sSL https://github.com/trytomakeyouprivate/Arkenfox-softening/raw/main/setup | bash
+curl -sSL https://github.com/boredsquirrel/Arkenfox-softening/raw/main/setup | bash
 ```
 
 ## WARNING
 
 This script enables WebGL, to run certain Map sites and Online-Games. [Use NoScript](https://addons.mozilla.org/en-US/firefox/addon/noscript/) and Block WebGL on `Default`, `Trusted` and `Untrusted` level. The few sites actually needing WebGL will probably tell you, and you can manually enable it. This is way better than having it blocked on all sites with a big complex user.js, and you should use NoScript if you care about privacy.
 
-![WebGL Warning that NoScript displays](https://raw.githubusercontent.com/trytomakeyouprivate/Arkenfox-softening/main/webgl-maps.png)
+![WebGL Warning that NoScript displays](https://raw.githubusercontent.com/boredsquirrel/Arkenfox-softening/main/assets/images/webgl-maps.png)
 
 The option to disable Letterboxing is included. Letterboxing may add grey bars to your browser window if the ratio is not 16:9 (as far as I know), preventing Websites fingerprinting you due to a special Screen size. This may have a bigger impact on experience than you want (although disabled in fullscreen, e.g. when watching a movie) but makes your fingerprint more unified.
 
@@ -83,12 +83,12 @@ The new update changed basically everything, as the previous was just broken
 
 ## Related projects
 
-### [Simple Context menu](https://github.com/trytomakeyouprivate/Simple-Firefox-Menus)
+### [Simple Context menu](https://github.com/boredsquirrel/Simple-Firefox-Menus)
 Using [Simple Menu Wizard](https://github.com/stonecrusher/simpleMenuWizard) I created my personal "minimal context menu" userChrome.css.
 
 All this file does, is reducing the displayed options in the context menu, for example emailing images, inspecting its usability, and more that a normal user doesnt need. It makes Firefox wayyy less cluttered, especially when some entries are already replaced (SingleFile for saving Pages as working HTML, Multi account containers instead of "new window").
 
-### [Search Engines](https://github.com/trytomakeyouprivate/Search-Engines)
+### [Search Engines](https://github.com/boredsquirrel/Search-Engines)
 Decentralize your Web usage using great search engines!
 
 ## Contributing
@@ -99,5 +99,3 @@ This makes updating always time-consuming so I am happy for help on this project
 
 ## To-Do
 - [ ] add Windows and Mac support (merge requests, no time to do myself)
-  - Mac uses bash so should work easier
-  - I got some rough Windows code from some suspicious AI
