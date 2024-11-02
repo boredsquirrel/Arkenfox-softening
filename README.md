@@ -2,12 +2,12 @@
 
 Easy setup of Arkenfox, a tool to make your Firefox the most secure browser.
 
-Includes an override file that reduces the extreme settings, to make it usable for everyday tasks.
+Includes an override file that reduces the mmost extreme settings, to make it usable for most everyday tasks.
 
-Supports native (system App), Flatpak and Snap Firefox.
+Supports native (System App), Flatpak and Snap Firefox.
 
 - Keep tabs
-- Save history for a 7 days
+- Save history for 7 days
 - Enable cachig for speed
 - Enable WebGL
 - Allow quick search using shortcuts
@@ -29,7 +29,7 @@ This script enables WebGL, to run certain Map sites and Online-Games. [Use NoScr
 
 ![WebGL Warning that NoScript displays](https://raw.githubusercontent.com/boredsquirrel/Arkenfox-softening/main/assets/images/webgl-maps.png)
 
-The option to disable Letterboxing is included. Letterboxing may add grey bars to your browser window if the ratio is not 16:9 (as far as I know), preventing Websites fingerprinting you due to a special Screen size. This may have a bigger impact on experience than you want (although disabled in fullscreen, e.g. when watching a movie) but makes your fingerprint more unified.
+The option to disable letterboxing is included. Letterboxing may add grey bars to your browser window if the ratio is not 16:9 (as far as I know), preventing websites from fingerprinting you due to a special screen size. This may have a bigger impact on experience than you want (although disabled in fullscreen, e.g. when watching a movie) but makes your fingerprint more unified.
 
 Individual changes like that are included in the interactive chooser, which you run at startup to configure your own overwrite-script.
 
@@ -55,13 +55,13 @@ Also [there is UnSnap](https://github.com/popey/unsnap), a really nice tool repl
 ---
 
 ## More Detailed explanation
-Firefox is not really privacy friendly. It has very bad presets and even if you apply all GUI Settings to make it more private, remove Google etc., you still have lots of stuff under the hood and even some Google presets stay ("top site" or others).
+Firefox is not really privacy friendly. It has very bad presets and even if you apply all the GUI settings to make it more private, like remove Google etc., you still have lots of stuff under the hood and even some Google presets stay ("top site" or others).
 
 But Firefox is very modular, with nearly every setting being changeable with the user.js, a config file that overwrites inserted settings on every launch. This is awesome, as the Tor-Browser uses these settings to become the most secure browser, and Arkenfox is a long-existing preset of changes that are pretty much the same as those from the Tor-Browser.
 
-The Arkenfox team saves us a lot of effort, the integrated links and sources are awesome, and they also include deactivated unnessecary "hardening" (outdated, already covered, contraproductive) that you could apply accidently, thinking it improves privacy.
+The Arkenfox team saves us a lot of effort, the integrated links and sources are awesome, and they also include deactivated unnessecary "hardening" (outdated, already covered, conter-productive) that you could apply accidently, thinking it improves privacy.
 
-The problem is, that Arkenfox-Firefox will not work great for daily usage. You lose way too much functionality which would not actually be dangerous, so instead of creating my own user.js (stupid efford) I looked through that user.js and changed only the annoying settings, resulting in this minimal changeset.
+The problem is, that Arkenfox-Firefox will not work great for daily usage. You lose way too much functionality which would not actually be dangerous, so instead of creating my own user.js (stupid amount of effort) I looked through the user.js and changed only the annoying settings, resulting in this minimal changeset.
 
 If you have any improvements, please create an issue report.
 
@@ -69,11 +69,11 @@ Spread this script, fork it, change it, help make hardened Firefox more popular!
 
 ### How this script works
 
-The new update changed basically everything, as the previous was just broken
+The new update changed basically everything, as the previous was just broken.
 
-1. Detect wether to use kdialog, zenity or notify-send for GUI dialogs
+1. Detect whether to use kdialog, zenity or notify-send for GUI dialogs
 2. Detect the used Firefox Version and Directories
-3. Creates an Arkenfox Profile folder and clones your current profile folder there
+3. Creates an Arkenfox Profile folder and clones your current profile folder to the new folder
 4. Change the profiles.ini to add the Arkenfox user
 5. Launch Firefox in -p mode, so that the user enables the Arkenfox user as default; closes Firefox again
 6. Downloads the Arkenfox git repo and the custom override, runs the updater from Arkenfox in "automatic mode" (piping "Y" into the script to skip the Y/N Dialog)
@@ -86,10 +86,10 @@ The new update changed basically everything, as the previous was just broken
 ### [Simple Context menu](https://github.com/boredsquirrel/Simple-Firefox-Menus)
 Using [Simple Menu Wizard](https://github.com/stonecrusher/simpleMenuWizard) I created my personal "minimal context menu" userChrome.css.
 
-All this file does, is reducing the displayed options in the context menu, for example emailing images, inspecting its usability, and more that a normal user doesnt need. It makes Firefox wayyy less cluttered, especially when some entries are already replaced (SingleFile for saving Pages as working HTML, Multi account containers instead of "new window").
+All this file does, is reducing the displayed options in the context menu, for example, emailing images, inspecting its usability, and more that a normal user doesnt need. It makes Firefox way less cluttered, especially when some entries are already replaced (SingleFile for saving pages as working HTML, Multi Account containers instead of a "new window").
 
 ### [Search Engines](https://github.com/boredsquirrel/Search-Engines)
-Decentralize your Web usage using great search engines!
+Decentralize your web usage using great search engines!
 
 ## Contributing
 
