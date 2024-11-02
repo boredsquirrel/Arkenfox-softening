@@ -2,7 +2,7 @@
 
 Easy setup of Arkenfox, a tool to make your Firefox the most secure browser.
 
-Includes an override file that reduces the mmost extreme settings, to make it usable for most everyday tasks.
+Includes an override file that reduces the most extreme settings, to make it usable for most everyday tasks.
 
 Supports native (System App), Flatpak and Snap Firefox.
 
