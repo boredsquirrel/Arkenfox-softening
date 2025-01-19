@@ -1,4 +1,5 @@
 #!/bin/bash
+set -euo pipefail
 
 # Make sure Firefox is closed, to avoid any issues.
 # This uses Kdialog, zenity or notify-send as backup.
