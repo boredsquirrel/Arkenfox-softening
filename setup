@@ -1,5 +1,4 @@
 #!/bin/bash
-set -euo pipefail
 
 # Make sure Firefox is closed, to avoid any issues.
 # This uses Kdialog, zenity or notify-send as backup.
@@ -7,63 +6,22 @@ set -euo pipefail
 
 SCRIPTPATH="$PWD"
 
-# KDE
-kdialog_close() {
-    result=$(kdialog --title "Arkenfox Setup preparation" --yesno "You need to close Firefox to proceed. Close it now?")
-
-    if [[ $result == "yes" ]]; then
-        pkill -9 firefox
-        echo "Firefox closed."
-        notify-send -a "Arkenfox Setup" "Firefox Closed"
-    elif [[ $result == "no" ]]; then
-        echo "cancelled"
-        notify-send -a "Arkenfox-install" -t 5000 "Cancelled" "Setup cancelled, to avoid corruption of data." && exit && exit
-    fi
-}
-
-# zenity (GTK)
-zenity_close() {
-    result=$(zenity --question --title "Arkenfox Setup preparation" --text "You need to close Firefox to proceed. Close it now?")
-
-    if [[ $result == "true" ]]; then
-        pkill -9 firefox &&\
-        echo "Firefox closed." &&\
-        notify-send -a "Arkenfox Setup" "Firefox Closed"
-    elif [[ $result == "false" ]]; then
-        echo "cancelled" &&\
-        notify-send -a "Arkenfox-install" -t 5000 "Cancelled" "Setup cancelled, to avoid corruption of data." && exit && exit
-    fi
-}
-
-# notify-send enforced Dialog
-# sorry for the inconvenience, this needs to be enforced.
-enforce_close(){
-    notify-send -t 15000 -a "Arkenfox Setup preparation" "Firefox will be closed in 30s..." "Close it manually to skip \n\n This is necessary to avoid data corruption."
-
-    if pgrep -x "firefox" > /dev\null; then
-        echo "Firefox is running. Closing Firefox in 30s..." &&\
-        sleep 25 &&\
-        echo "Closing in 5s..." &&\
-        notify-send -t 5000 -a "Arkenfox Setup preparation" "Firefox will be closed in 5s..." &&\
-        sleep 5 &&\
-        pkill -9 firefox &&\
-        echo "Firefox closed." &&\
-        notify-send -a "Arkenfox Setup" "Firefox Closed."
-    else
-        echo "Firefox already closed. Proceeding..."
-    fi
-}
-
 # Check for available dialog tools and execute the corresponding function
 if [[ $(command -v kdialog) ]]; then
     GUIMETHOD="kdialog"
-    kdialog_close
+    result=$(kdialog --title "Arkenfox Setup Preparation" --msgbox "Firefox will be closed to avoid data corruption.")
+    close_firefox
 elif [[ $(command -v zenity) ]]; then
     GUIMETHID="zenity"
-    zenity_close
+    result=$(zenity --question --title "Arkenfox Setup Preparation" --text "Firefox will be closed to avoid data corruption.")
+    close_firefox
 else
     GUIMETHOD="notifysend"
-    enforce_close
+    notify-send -a "Arkenfox Setup Preparation" "Closing Firefox" "Firefox will close in 15 seconds automatically, to avoid issues with your data."
+    sleep 10
+    notify-send -a "Arkenfox Setup Preparation" "Closing Firefox in 5 seconds"
+    sleep 5
+    pkill -9 firefox
 fi
 
 # ------------- Firefox Version detection ----------
@@ -71,30 +29,39 @@ fi
 # Which version of Firefox is installed? This sets the base string in the other script
 # Leaving out Torbrowser, Librewolf and Mullvad Browser as these are already hardened.
 
-if command -v firefox &> /dev/null; then
-    echo "Native Firefox chosen."
-    BASEDIR=~/.mozilla/firefox
+if command -v firefox &>/dev/null; then
+    notify-send -a "Arkenfox Setup" "Native Firefox detected" "The profile will be installed for your natively installed firefox"
+    BASEDIR="~/.mozilla/firefox"
     RUNCOMMAND="firefox"
+
+    notify-send -t 0 -a "Arkenfox Setup" "Systemwide policy installed." "A policy for the whole system is installed, which presets some security and privacy settings. You can view it in '/etc/firefox/policies'."
+    run0 sh -c '
+        mkdir -p /etc/firefox/policies
+        curl -SslL https://raw.githubusercontent.com/boredsquirrel/Arkenfox-softening/refs/heads/main/policies.json -O /etc/firefox/policies/policies.json
+    '
+
 elif flatpak list --app | grep -q org.mozilla.firefox; then
-    echo "Flatpak Firefox chosen."
-    BASEDIR=~/.var/app/org.mozilla.firefox/.mozilla/firefox
+    notify-send -a "Arkenfox Setup" "Flatpak Firefox detected" "The profile will be installed for Firefox installed via Flatpak. Note that until Firefox gets a fork server and a solution like 'zypak' is made for Flatpak Firefox, it has highly restricted process isolation and should not be used." -t 30
+    BASEDIR="~/.var/app/org.mozilla.firefox/.mozilla/firefox"
     RUNCOMMAND="flatpak run org.mozilla.firefox"
 elif snap list | grep -q firefox; then
-    echo "Snap Firefox chosen."
-    BASEDIR=~/snap/firefox/current/.mozilla/firefox
+    notify-send -a "Arkenfox Setup" "Snap Firefox detected" "The profile will be installed for Firefox installed via Snap."
+    BASEDIR="~/snap/firefox/current/.mozilla/firefox"
     RUNCOMMAND="snap run firefox"
 else
-    echo "Firefox is not installed. Exiting script."
-    notify-send -t 15000 -a "Arkenfox Setup" "Firefox is not installed?" "If you use Librewolf or MullvadBrowser,\n you dont need this script.\n Otherwise, please file an issue report\! \n Setup cancelled."
+    notify-send -t 15000 -a "Arkenfox Setup" "Firefox is not installed?" "If you use Librewolf or Mullvad-Browser,\n you dont need this script.\n Otherwise, please file an issue report\! \n Setup cancelled."
     exit 1
 fi
 
+ARKDIR="$BASEDIR/ARKENFOX"
+
 # ------------ Folder creation --------
 cd $BASEDIR
+DEFAULTDIR=(*-default-release)
 mkdir DO-NOT-REMOVE #the directory to store the vanilla Arkenfox user.js in
 mkdir ARKENFOX
 
-cat > DO-NOT-REMOVE/README.txt <<EOF
+cat >DO-NOT-REMOVE/README.txt <<EOF
 What is this directory?
 
 It belongs to the "Arkenfox Setup script" and contains the original user.js
@@ -106,106 +73,60 @@ EOF
 # Get the name of the default directory (Firefox names these randomly, probably against viruses?)
 # Find the file with the name *-default-release
 
-DEFAULTDIR=(*-default-release)
-
 # Copying the currently used profile
 notify-send -t 20000 -a "Arkenfox Setup" "Copying your profile folder..." "Your current profile is not changed\!\n You find it in $BASEDIR, named $DEFAULTDIR.\n Run '$RUNCOMMAND -p $DEFAULTDIR' to launch the profile selection."
 
 cp $DEFAULTDIR/* ARKENFOX
-
-
-# --------- Profiles.ini configuration ---------
-
-arkenfox_ini_append(){
-    cat >> profiles.ini <<EOF
-
-[Profile$i]
-Name=Arkenfox
-IsRelative=1
-Path=ARKENFOX
-EOF
-}
-
-# Check if the Arkenfox profile is already registered
-# If not, set it as the largest "[ProfileX]" entry using the for-loop
-
-if grep -q "^Name=Arkenfox" "profiles.ini"; then
-    echo "Profile Arkenfox already exists. Exiting."
-else
-    while true; do
-        profile_name="Profile$i"
-        if ! grep -q "$profile_name" "profiles.ini"; then
-            arkenfox_ini_append
-            echo "Profile Arkenfox added to profiles.ini, as Profile$i."
-            break
-        fi
-        ((i++))
-    done
-fi
-
-NEARLYDONE="The softened Arkenfox profile has been created.\n\nUnder 'about:profiles' you can access the normal Profile for Payment sites or others that may not work.\n\nFirefox will open, choose the profile 'Arkenfox' to continue.\n\nYour profile was copied so you can always use it.\n\nIt is not yet finished, so please close Firefox again."
-
-case "$GUIMETHOD" in
-    "kdialog")
-        kdialog --title "Setup nearly done!" --msgbox "$NEARLYDONE"
-        $RUNCOMMAND -p &
-        sleep 5
-        pkill -9 firefox
-        ;;
-    "zenity")
-        zenity --info --title "Setup nearly done!!" --text="$NEARLYDONE"
-        $RUNCOMMAND -p &
-        sleep 5
-        pkill -9 firefox
-        ;;
-    "notifysend")
-        notify-send -t 20000 -a "Setup nearly done!" "$NEARLYDONE"
-        $RUNCOMMAND -p &
-        sleep 5
-        pkill -9 firefox
-        ;;
-esac
+sleep 3
 
 # ---------- Install Arkenfox ---------
 
 # set profile folder
-ARKDIR="$BASEDIR/ARKENFOX"
-cd $ARKDIR
+cd ARKENFOX
 
 # clone arkenfox
-notify-send -a "Arkenfox Setup" "Downloading" "Cloning the Arkenfox repository, downloading the overrides.js,\nand running the updater."
-echo "Downloading Arkenfox and the overrides..."
+notify-send -a "Arkenfox Setup" "Downloading" "Downloading the config files from the Arkenfox repository: the overrides.js,\nand the updater."
 
-git clone https://github.com/arkenfox/user.js arkenfoxgit || git pull https://github.com/arkenfox/user.js
-cd arkenfoxgit/
-#rm -f *.bat
-#rm -rf wiki
+wget "https://raw.githubusercontent.com/arkenfox/user.js/refs/heads/master/user.js"
+wget "https://raw.githubusercontent.com/arkenfox/user.js/refs/heads/master/updater.sh"
 
-# c
-echo "Downloading the overrides.js..."
-wget https://raw.githubusercontent.com/boredsquirrel/Arkenfox-softening/main/user-overrides.js
+wget "https://raw.githubusercontent.com/boredsquirrel/Arkenfox-softening/main/user-overrides.js"
 
-echo "Running Arkenfoxes updater"
 notify-send -a "Arkenfox Setup" "Running..." "Running the Arkenfox updater and applying the overrides"
 
-echo "Y" | updater.sh &&\
+echo "Y" | updater.sh &&
 
-# copy result to parent folder (firefox main user directory)
-cp user.js ../
+    # copy result to parent folder (firefox main user directory)
+    cp user.js ../$(date +"%Y-%m-%d")_user.js
 
-# ------------ A real autoupdating script -------
+# -------------- Running Arkenfox ----------
 
-cat > autoupdater <<EOF
+notify-send -t 0 -a "Arkenfox Setup" "Profile setup." "The profile was created and Firefox will start, after 5 seconds it will be closed again."
+
+$RUNCOMMAND -profile "$ARKDIR" &
+sleep 5
+pkill -9 firefox
+notify-send -t 4000 -a "Arkenfox Setup" "Profile created. It should now show up in the profile selector. Otherwise you need to manually create it."
+sleep 4
+firefox -p
+
+# ------------ Autoupdating script -------
+
+UPDATER="~/.local/bin/arkenfox-updater"
+
+cat >$UPDATER <<EOF
 #!/bin/bash
 
 # This script does not much, but update the user.js using the upstream Arkenfox script, using my overrides,
 # and copy that result to the profile folder, override the older user.js
 
+# run the arkenfox updater, using the custom overrides
 echo "Y" | $ARKDIR/user.js/updater.sh &&\
+# backup the user.js
 cp -f user.js ../
 EOF
 
-chmod +x autoupdater
+chmod +x $UPDATER
 
 # ------------ Setup automatic updates ----------
 
@@ -213,7 +134,7 @@ chmod +x autoupdater
 
 wget https://raw.githubusercontent.com/boredsquirrel/Arkenfox-softening/main/arkenfox-icon.png -O ~/.local/share/applications/arkenfox-icon.png
 
-cat > ~/.local/share/applications/Update-Arkenfox.desktop <<EOF
+cat >~/.local/share/applications/Update-Arkenfox.desktop <<EOF
 [Desktop Entry]
 Exec=$ARKDIR/arkenfoxgit/updater.sh
 GenericName=Downloads the latest Arkenfox version, applies softening
@@ -224,28 +145,29 @@ EOF
 # Profile chooser Desktop Entry
 # Some Firefox versions (RPM, Flatpak, ...) may do this automatically, so its useless
 # But I like the icon lol
+
 wget https://raw.githubusercontent.com/boredsquirrel/Arkenfox-softening/main/profilechooser-icon.png ~/.local/share/applications/firefox-profilechooser.png
 
-cat > ~/.local/share/applications/Update-Arkenfox.desktop <<EOF
+cat >~/.local/share/applications/Update-Arkenfox.desktop <<EOF
 [Desktop Entry]
+Name=Firefox Profiles
 Exec=$RUNCOMMAND -p
 GenericName=Select a Firefox Profile
 Icon=$HOME/.local/share/applications/firefox-profilechooser.png
-Name=Firefox Profiles
 EOF
 
-# --------------- Create Systemd services -----------
+# --------------- Systemd services -----------
 mkdir -p ~/.config/systemd/user
 
 # service
-cat > ~/.config/systemd/user/arkenfox-updater.service <<EOF
+cat >~/.config/systemd/user/arkenfox-updater.service <<EOF
 [Unit]
 Description=Runs the Arkenfox updater, applies your set changes
 
 [Service]
 Type=simple
-ExecStart=/bin/bash -c '$ARKDIR/arkenfoxgit/autoupdater'
-Restart=always
+ExecStart=$HOME/.local/bin/arkenfox-updater
+Restart=on-failure
 RestartSec=60
 
 [Install]
@@ -253,7 +175,7 @@ WantedBy=default.target
 EOF
 
 # timer
-cat > ~/.config/systemd/user/arkenfox-updater.timer <<EOF
+cat >~/.config/systemd/user/arkenfox-updater.timer <<EOF
 [Unit]
 Description=Run arkenfox-updater every day
 
@@ -272,24 +194,21 @@ systemctl --user enable arkenfox-updater.service
 
 FINISHTEXT="Arkenfox is now set up with default settings.\n\nIt may not suit your needs though.\n\nChange the 'user-overrides.js' in $BASEDIR, do NOT change the user.js to avoid breakage.\n\nThe override is configured to be user-friendly."
 
-NOSCRIPTTEXT="Please install NoScript and disable WebGL on all levels:\n\n- Default\n- Trusted\n- Untrusted\n\nYou can enable it manually if Webapps, Games or Maps require it, by changing the sites Javascript setting to 'custom' and enabling WebGL manually.\n\nWhy? WebGL uses your Graphics card, which can be used to track you.\n\nAlternatively you can report a fake value of your GPU using the Addon 'WebGL Fingerprint Defender'."
+ADDONTEXT="Please install NoScript or UBlock-Origin and disable WebGL on all levels:\n\n- Default\n- Trusted\n- Untrusted\n\nYou can enable it manually if Webapps, Games or Maps require it, by changing the sites Javascript setting to 'custom' and enabling WebGL manually.\n\nWhy? WebGL uses your Graphics card, which can be used to track you.\n\nAlternatively you can report a fake value of your GPU using the Addon 'WebGL Fingerprint Defender'."
 
 case "$GUIMETHOD" in
-    "kdialog")
-        kdialog --title "Setup finished!" --msgbox "$FINISHTEXT"
-        kdialog --title "WebGL enabled" --warningyesno "$NOSCRIPTTEXT"
-        $RUNCOMMAND -p
-        ;;
-    "zenity")
-        zenity --info --title "Setup finished!" --text="$FINISHTEXT"
-        zenity --warning --title "WebGL enabled" --text "$NOSCRIPTTEXT"
-        $RUNCOMMAND -p
-        ;;
-    "notifysend")
-        notify-send -t 20000 -a "Setup finished!" "$FINISHTEXT"
-        sleep 10
-        notify-send -t 20000 -a "WebGL enabled" "$NOSCRIPTTEXT" --urgency=critical
-        sleep 20
-        $RUNCOMMAND -p
-        ;;
+"kdialog")
+    kdialog --title "Setup finished!" --msgbox "$FINISHTEXT"
+    kdialog --title "WebGL enabled" --warningyesno "$ADDONTEXT"
+    ;;
+"zenity")
+    zenity --info --title "Setup finished!" --text="$FINISHTEXT"
+    zenity --warning --title "WebGL enabled" --text "$ADDONTEXT"
+    ;;
+"notifysend")
+    notify-send -t 20000 -a "Setup finished!" "$FINISHTEXT"
+    sleep 10
+    notify-send -t 20000 -a "WebGL enabled" "$ADDONTEXT" --urgency=critical
+    sleep 20
+    ;;
 esac

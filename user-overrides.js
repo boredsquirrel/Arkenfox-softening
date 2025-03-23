@@ -21,10 +21,10 @@ user_pref("browser.sessionstore.restore_pinned_tabs_on_demand",true);
 // Librewolf only, possible through GUI
 //user_pref("identity.fxaccounts.enabled", true);
 
-// Allow search shortcuts (seems to be disabled?)
+// Allow search shortcuts
 user_pref("keyword.enabled", true);
 
-// Disable Letterboxing (remove the screenborders, this makes you fingerprintable)
+// Disable Letterboxing (remove the screen borders, this makes you fingerprintable)
 user_pref("privacy.resistFingerprinting.letterboxing", false);
 
 // Allow Mozilla Addons Manager for regular behavior
@@ -45,12 +45,14 @@ user_pref("browser.sessionstore.restore_pinned_tabs_on_demand",true);
 // user_pref("privacy.clearOnShutdown.cache", false); //clears a lot of trackers like ETags
 user_pref("privacy.clearOnShutdown.history", false); // usability
 user_pref("privacy.clearOnShutdown.sessions", false);
+// new
+user_pref("privacy.clearOnShutdown_v2.browsingHistoryAndDownloads", false);
+user_pref("browser.sessionhistory.max_entries", 2);
 
 // System colors
 user_pref("browser.display.use_system_colors", true);
 
-user_pref("webgl.disabled", false); // use noscript! "WebGL fingerprint defender" may also help
-
+user_pref("webgl.disabled", false); // use noscript or UBlock-Origin to block it and allow it for single websites! "WebGL fingerprint defender" may also help
 
 // speed
 user_pref("network.http.max-persistent-connections-per-server", 30);
@@ -72,3 +74,4 @@ user_pref("widget.use-xdg-desktop-portal.file-picker", 1);
 //user_pref("widget.use-xdg-desktop-portal.mime-handler", 1);
 //user_pref("widget.use-xdg-desktop-portal.open-uri", 1);
 //user_pref("widget.use-xdg-desktop-portal.settings", 1);
+user_pref("media.webrtc.camera.allow-pipewire", true);
